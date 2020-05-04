@@ -15,9 +15,31 @@ namespace Attendance_List
         public Manage()
         {
             InitializeComponent();
+            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            {
+                foreach (var item in context.CourseInfoes)
+                {
+                    LstBoxCourses.Items.Add(item);
+                } 
+            }
         }
 
         private void Manage_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnOpen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteCourse_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnCreateCourse_Click(object sender, EventArgs e)
         {
 
         }
