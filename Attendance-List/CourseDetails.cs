@@ -31,7 +31,7 @@ namespace Attendance_List
         {
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
-                foreach (var item in context.Participants.Where())
+                /*foreach (var item in context.Participants.Where(x => x.Participants_Courses.Join(CourseInfo, )))
                 {
                     LstParticipants.Items.Add(item);
                 }
@@ -41,12 +41,13 @@ namespace Attendance_List
                     LstTeachers.Items.Add(item);
                 }
 
-                txtName.Text = Course.Name;
+                txtName.Text = Course.Course;
                 txtLocation.Text = Course.Location;
                 TxtContactPerson.Text = Course.ContactPerson;
-                TxtCourseCode.Text = Course.CourseCode;
-                TxtOeNumber.Text = Course.OeNumber;
-                txtInstitution.Text = Course.Institution;
+                TxtCourseCode.Text = Course.CourseCode.ToString();
+                TxtOeNumber.Text = Course.OeNumber.ToString();
+                txtInstitution.Text = Course.CourseInstitution;
+                */
             }
         }
 

@@ -1,4 +1,6 @@
-﻿namespace Attendance_List
+﻿using System;
+
+namespace Attendance_List
 {
     partial class Manage
     {
@@ -87,6 +89,11 @@
             this.Load += new System.EventHandler(this.Manage_Load);
             this.ResumeLayout(false);
 
+        }
+
+        private void Manage_Load(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -18,23 +18,21 @@ namespace Attendance_List
             InitializeComponent();
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
-                foreach (var item in context.CourseInfoes)
+                if (context.CourseInfoes.Count() != 0)
                 {
-                    LstBoxCourses.Items.Add(item);
-                } 
+                    foreach (var item in context.CourseInfoes)
+                    {
+                        LstBoxCourses.Items.Add(item);
+                    }
+                }
             }
-        }
-
-        private void Manage_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void BtnOpen_Click(object sender, EventArgs e)
         {
             if (LstBoxCourses.SelectedItem != null)
             {
-                CourseDetails details = new CourseDetails(LstBoxCourses.SelectedItem);
+                CourseDetails details = new CourseDetails((CourseInfo)LstBoxCourses.SelectedItem);
                 details.Show();
             }
         }
@@ -43,7 +41,7 @@ namespace Attendance_List
         {
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
-                context.CourseInfoes.Remove(LstBoxCourses.SelectedItem);
+                context.CourseInfoes.Remove((CourseInfo)LstBoxCourses.SelectedItem);
             }
         }
 
