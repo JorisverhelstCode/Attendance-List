@@ -31,11 +31,11 @@ namespace Attendance_List
         {
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
-                /*foreach (var item in context.Participants.Where(x => x.Participants_Courses.Join(CourseInfo, )))
-                {
-                    LstParticipants.Items.Add(item);
-                }
-
+                /*var innerJoinQuery = from participant in context.Participants
+                                     join participantCourse in context.Participants_Courses on participant.ID equals participantCourse.CourseID
+                                     join course in context.CourseInfoes on participantCourse.CourseID equals course.ID
+                                     select new { ProductName = product.Name, Category = category.Name };
+                
                 foreach (var item in context.Teachers.Where())
                 {
                     LstTeachers.Items.Add(item);
