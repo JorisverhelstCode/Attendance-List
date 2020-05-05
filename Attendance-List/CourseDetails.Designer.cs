@@ -48,6 +48,8 @@
             this.TxtCourseCode = new System.Windows.Forms.TextBox();
             this.BtnAddTeacher = new System.Windows.Forms.Button();
             this.BtnRemoveTeacher = new System.Windows.Forms.Button();
+            this.BtnSave = new System.Windows.Forms.Button();
+            this.BtnQuit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtName
@@ -222,11 +224,33 @@
             this.BtnRemoveTeacher.UseVisualStyleBackColor = true;
             this.BtnRemoveTeacher.Click += new System.EventHandler(this.BtnRemoveTeacher_Click);
             // 
+            // BtnSave
+            // 
+            this.BtnSave.Location = new System.Drawing.Point(740, 433);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(129, 61);
+            this.BtnSave.TabIndex = 20;
+            this.BtnSave.Text = "Save";
+            this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // BtnQuit
+            // 
+            this.BtnQuit.Location = new System.Drawing.Point(900, 433);
+            this.BtnQuit.Name = "BtnQuit";
+            this.BtnQuit.Size = new System.Drawing.Size(115, 60);
+            this.BtnQuit.TabIndex = 21;
+            this.BtnQuit.Text = "Quit";
+            this.BtnQuit.UseVisualStyleBackColor = true;
+            this.BtnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
+            // 
             // CourseDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1040, 524);
+            this.Controls.Add(this.BtnQuit);
+            this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.BtnRemoveTeacher);
             this.Controls.Add(this.BtnAddTeacher);
             this.Controls.Add(this.TxtCourseCode);
@@ -276,5 +300,7 @@
         private System.Windows.Forms.TextBox TxtCourseCode;
         private System.Windows.Forms.Button BtnAddTeacher;
         private System.Windows.Forms.Button BtnRemoveTeacher;
+        private System.Windows.Forms.Button BtnSave;
+        private System.Windows.Forms.Button BtnQuit;
     }
 }

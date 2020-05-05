@@ -67,6 +67,12 @@
     <Compile Include="Manage.Designer.cs">
       <DependentUpon>Manage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ParticipantDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParticipantDetails.Designer.cs">
+      <DependentUpon>ParticipantDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CourseDetails.resx">
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Manage.resx">
       <DependentUpon>Manage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParticipantDetails.resx">
+      <DependentUpon>ParticipantDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,9 +111,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AttendencyDb\AttendencyLibrary.csproj">
-      <Project>{f9fc382a-30b9-4467-ac2d-2ab3940c00ca}</Project>
-      <Name>AttendencyLibrary</Name>
+    <ProjectReference Include="..\AttendencieLibrary\AttendencieLibrary.csproj">
+      <Project>{08cfdee7-7367-490a-a0ee-c8c590f874f2}</Project>
+      <Name>AttendencieLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
