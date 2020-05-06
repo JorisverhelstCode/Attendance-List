@@ -32,7 +32,7 @@
             this.TxtName = new System.Windows.Forms.TextBox();
             this.LstBoxCourses = new System.Windows.Forms.ListBox();
             this.BtnSave = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnQuit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblName
@@ -59,6 +59,7 @@
             this.LstBoxCourses.Name = "LstBoxCourses";
             this.LstBoxCourses.Size = new System.Drawing.Size(327, 276);
             this.LstBoxCourses.TabIndex = 2;
+            this.LstBoxCourses.DoubleClick += new System.EventHandler(this.LstBoxCourses_DoubleClick);
             // 
             // BtnSave
             // 
@@ -68,22 +69,24 @@
             this.BtnSave.TabIndex = 3;
             this.BtnSave.Text = "Save";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // button1
+            // BtnQuit
             // 
-            this.button1.Location = new System.Drawing.Point(213, 388);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 54);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Quit";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnQuit.Location = new System.Drawing.Point(213, 388);
+            this.BtnQuit.Name = "BtnQuit";
+            this.BtnQuit.Size = new System.Drawing.Size(131, 54);
+            this.BtnQuit.TabIndex = 4;
+            this.BtnQuit.Text = "Quit";
+            this.BtnQuit.UseVisualStyleBackColor = true;
+            this.BtnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
             // 
             // ParticipantDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(392, 470);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnQuit);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.LstBoxCourses);
             this.Controls.Add(this.TxtName);
@@ -101,6 +104,6 @@
         private System.Windows.Forms.TextBox TxtName;
         private System.Windows.Forms.ListBox LstBoxCourses;
         private System.Windows.Forms.Button BtnSave;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnQuit;
     }
 }

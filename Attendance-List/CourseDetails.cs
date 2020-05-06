@@ -53,12 +53,13 @@ namespace Attendance_List
 
         
 
-        private void BtnAdd_Click(object sender, EventArgs e)
+        private void BtnAddParticipant_Click(object sender, EventArgs e)
         {
-
+            var Participant = new ParticipantDetails();
+            Participant.Show();
         }
 
-        private void BtnRemove_Click(object sender, EventArgs e)
+        private void BtnRemoveParticipant_Click(object sender, EventArgs e)
         {
 
         }

@@ -112,7 +112,7 @@
             this.BtnAddParticipant.TabIndex = 6;
             this.BtnAddParticipant.Text = "Add";
             this.BtnAddParticipant.UseVisualStyleBackColor = true;
-            this.BtnAddParticipant.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.BtnAddParticipant.Click += new System.EventHandler(this.BtnAddParticipant_Click);
             // 
             // BtnRemoveParticipant
             // 
@@ -122,7 +122,7 @@
             this.BtnRemoveParticipant.TabIndex = 7;
             this.BtnRemoveParticipant.Text = "Remove";
             this.BtnRemoveParticipant.UseVisualStyleBackColor = true;
-            this.BtnRemoveParticipant.Click += new System.EventHandler(this.BtnRemove_Click);
+            this.BtnRemoveParticipant.Click += new System.EventHandler(this.BtnRemoveParticipant_Click);
             // 
             // LblInstitution
             // 

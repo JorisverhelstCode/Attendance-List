@@ -16,7 +16,7 @@ namespace Attendance_List
         public Manage()
         {
             InitializeComponent();
-            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            /*using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
                 var Courses = context.CourseInfoes.ToList();
                 if (Courses.Count() != 0)
@@ -26,7 +26,7 @@ namespace Attendance_List
                         LstBoxCourses.Items.Add(item);
                     }
                 }
-            }
+            }*/
         }
 
         private void BtnOpen_Click(object sender, EventArgs e)
@@ -41,12 +41,15 @@ namespace Attendance_List
         private void BtnDeleteCourse_Click(object sender, EventArgs e)
         {
             var toBeDeleted = LstBoxCourses.SelectedItem;
-            var ConfirmationBoxAnswer = MessageBox.Show($"Deleting {toBeDeleted}", $"Are you sure you want to delete {toBeDeleted}", MessageBoxButtons.YesNo);
-            if (toBeDeleted != null && ConfirmationBoxAnswer == DialogResult.Yes)
+            if (toBeDeleted != null )
             {
-                using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+                var ConfirmationBoxAnswer = MessageBox.Show($"Deleting {toBeDeleted}", $"Are you sure you want to delete {toBeDeleted}", MessageBoxButtons.YesNo);
+                if (ConfirmationBoxAnswer == DialogResult.Yes)
                 {
-                    context.CourseInfoes.Remove((CourseInfo)LstBoxCourses.SelectedItem);
+                    using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+                    {
+                        context.CourseInfoes.Remove((CourseInfo)LstBoxCourses.SelectedItem);
+                    }
                 }
             }
         }
