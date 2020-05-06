@@ -15,9 +15,14 @@ namespace Attendance_List
     {
         public Participant ThisParticipant { get; set; }
         private ErrorProvider EmptyError;
-        public ParticipantDetails(Participant part)
+
+        public ParticipantDetails()
         {
             InitializeComponent();
+        }
+
+        public ParticipantDetails(Participant part) : this()
+        {
             ThisParticipant = part;
         }
 
