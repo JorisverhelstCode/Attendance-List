@@ -33,6 +33,12 @@
             this.LstBoxCourses = new System.Windows.Forms.ListBox();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnQuit = new System.Windows.Forms.Button();
+            this.LblAdress = new System.Windows.Forms.Label();
+            this.TxtAdress = new System.Windows.Forms.TextBox();
+            this.LblBirthday = new System.Windows.Forms.Label();
+            this.DTPDayOfBirth = new System.Windows.Forms.DateTimePicker();
+            this.LblBadge = new System.Windows.Forms.Label();
+            this.TxtBadge = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // LblName
@@ -55,7 +61,7 @@
             // 
             this.LstBoxCourses.FormattingEnabled = true;
             this.LstBoxCourses.ItemHeight = 16;
-            this.LstBoxCourses.Location = new System.Drawing.Point(18, 88);
+            this.LstBoxCourses.Location = new System.Drawing.Point(17, 88);
             this.LstBoxCourses.Name = "LstBoxCourses";
             this.LstBoxCourses.Size = new System.Drawing.Size(327, 276);
             this.LstBoxCourses.TabIndex = 2;
@@ -63,17 +69,18 @@
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(17, 387);
+            this.BtnSave.Location = new System.Drawing.Point(17, 385);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(131, 56);
             this.BtnSave.TabIndex = 3;
             this.BtnSave.Text = "Save";
             this.BtnSave.UseVisualStyleBackColor = true;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.BtnSave.Validating += new System.ComponentModel.CancelEventHandler(this.BtnSave_Validating);
             // 
             // BtnQuit
             // 
-            this.BtnQuit.Location = new System.Drawing.Point(213, 388);
+            this.BtnQuit.Location = new System.Drawing.Point(595, 387);
             this.BtnQuit.Name = "BtnQuit";
             this.BtnQuit.Size = new System.Drawing.Size(131, 54);
             this.BtnQuit.TabIndex = 4;
@@ -81,11 +88,65 @@
             this.BtnQuit.UseVisualStyleBackColor = true;
             this.BtnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
             // 
+            // LblAdress
+            // 
+            this.LblAdress.AutoSize = true;
+            this.LblAdress.Location = new System.Drawing.Point(431, 20);
+            this.LblAdress.Name = "LblAdress";
+            this.LblAdress.Size = new System.Drawing.Size(56, 17);
+            this.LblAdress.TabIndex = 5;
+            this.LblAdress.Text = "Adress:";
+            // 
+            // TxtAdress
+            // 
+            this.TxtAdress.Location = new System.Drawing.Point(434, 56);
+            this.TxtAdress.Name = "TxtAdress";
+            this.TxtAdress.Size = new System.Drawing.Size(241, 22);
+            this.TxtAdress.TabIndex = 6;
+            // 
+            // LblBirthday
+            // 
+            this.LblBirthday.AutoSize = true;
+            this.LblBirthday.Location = new System.Drawing.Point(431, 115);
+            this.LblBirthday.Name = "LblBirthday";
+            this.LblBirthday.Size = new System.Drawing.Size(85, 17);
+            this.LblBirthday.TabIndex = 7;
+            this.LblBirthday.Text = "Day of birth:";
+            // 
+            // DTPDayOfBirth
+            // 
+            this.DTPDayOfBirth.Location = new System.Drawing.Point(434, 161);
+            this.DTPDayOfBirth.Name = "DTPDayOfBirth";
+            this.DTPDayOfBirth.Size = new System.Drawing.Size(290, 22);
+            this.DTPDayOfBirth.TabIndex = 8;
+            // 
+            // LblBadge
+            // 
+            this.LblBadge.AutoSize = true;
+            this.LblBadge.Location = new System.Drawing.Point(431, 219);
+            this.LblBadge.Name = "LblBadge";
+            this.LblBadge.Size = new System.Drawing.Size(105, 17);
+            this.LblBadge.TabIndex = 9;
+            this.LblBadge.Text = "Badge number:";
+            // 
+            // TxtBadge
+            // 
+            this.TxtBadge.Location = new System.Drawing.Point(434, 264);
+            this.TxtBadge.Name = "TxtBadge";
+            this.TxtBadge.Size = new System.Drawing.Size(149, 22);
+            this.TxtBadge.TabIndex = 10;
+            // 
             // ParticipantDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 470);
+            this.ClientSize = new System.Drawing.Size(738, 470);
+            this.Controls.Add(this.TxtBadge);
+            this.Controls.Add(this.LblBadge);
+            this.Controls.Add(this.DTPDayOfBirth);
+            this.Controls.Add(this.LblBirthday);
+            this.Controls.Add(this.TxtAdress);
+            this.Controls.Add(this.LblAdress);
             this.Controls.Add(this.BtnQuit);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.LstBoxCourses);
@@ -106,5 +167,11 @@
         private System.Windows.Forms.ListBox LstBoxCourses;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button BtnQuit;
+        private System.Windows.Forms.Label LblAdress;
+        private System.Windows.Forms.TextBox TxtAdress;
+        private System.Windows.Forms.Label LblBirthday;
+        private System.Windows.Forms.DateTimePicker DTPDayOfBirth;
+        private System.Windows.Forms.Label LblBadge;
+        private System.Windows.Forms.TextBox TxtBadge;
     }
 }

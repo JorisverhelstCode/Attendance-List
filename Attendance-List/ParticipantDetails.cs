@@ -15,15 +15,20 @@ namespace Attendance_List
     {
         public Participant ThisParticipant { get; set; }
         private ErrorProvider EmptyError;
+        private bool NewEntry;
 
         public ParticipantDetails()
         {
             InitializeComponent();
+            ThisParticipant = new Participant();
+            EmptyError = new ErrorProvider();
+            NewEntry = true;
         }
 
         public ParticipantDetails(Participant part) : this()
         {
             ThisParticipant = part;
+            NewEntry = false;
         }
 
         private void LstBoxCourses_DoubleClick(object sender, EventArgs e)
@@ -37,7 +42,15 @@ namespace Attendance_List
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (TxtName.Text != ThisParticipant.Name)
+            if (NewEntry)
+            {
+                using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+                {
+                    ThisParticipant.Name = TxtName.Text;
+                    context.Participants.Add(ThisParticipant);
+                    context.SaveChanges();
+                }
+            } else if (TxtName.Text != ThisParticipant.Name)
             {
                 using (AttendanceListDbEntities context = new AttendanceListDbEntities())
                 {
@@ -53,6 +66,15 @@ namespace Attendance_List
         }
 
         private void ParticipantDetails_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (TxtName.Text == "" && !NewEntry)
+            {
+                EmptyError.SetError(TxtName, "You can't just steal this man's name!");
+                e.Cancel = true;
+            }
+        }
+
+        private void BtnSave_Validating(object sender, CancelEventArgs e)
         {
             if (TxtName.Text == "")
             {
