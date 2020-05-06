@@ -167,14 +167,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AttendanceListDbModelStoreContainer">
-          <EntitySet Name="CourseInfo" EntityType="Self.CourseInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseInfo" EntityType="Self.CourseInfo" Schema="dbo" Table="CourseInfoes" store:Type="Tables" />
           <EntitySet Name="NonCourseDays" EntityType="Self.NonCourseDays" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Participant" EntityType="Self.Participant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participant" EntityType="Self.Participant" Schema="dbo" Table="Participants" store:Type="Tables" />
           <EntitySet Name="Participants&amp;Courses" EntityType="Self.Participants&amp;Courses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" Table="Teachers" store:Type="Tables" />
           <EntitySet Name="Teachers&amp;Courses" EntityType="Self.Teachers&amp;Courses" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TimeRegistration" EntityType="Self.TimeRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeRegistration" EntityType="Self.TimeRegistration" Schema="dbo" Table="TimeRegistrations" store:Type="Tables" />
           <AssociationSet Name="FK_NonCourseDays_CourseInfo" Association="Self.FK_NonCourseDays_CourseInfo">
             <End Role="CourseInfo" EntitySet="CourseInfo" />
             <End Role="NonCourseDays" EntitySet="NonCourseDays" />
@@ -301,7 +301,7 @@
           <NavigationProperty Name="Participant" Relationship="Self.FK_TimeRegistration_Participant" FromRole="TimeRegistration" ToRole="Participant" />
         </EntityType>
         <Association Name="FK_NonCourseDays_CourseInfo">
-          <End Role="CourseInfo" Type="Self.CourseInfo" Multiplicity="0..1" />
+          <End Role="CourseInfo" Type="AttendanceListDbModel.CourseInfo" Multiplicity="0..1" />
           <End Role="NonCourseDays" Type="Self.NonCourseDay" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseInfo">
@@ -313,7 +313,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Participants_Courses_CourseInfo">
-          <End Role="CourseInfo" Type="Self.CourseInfo" Multiplicity="0..1" />
+          <End Role="CourseInfo" Type="AttendanceListDbModel.CourseInfo" Multiplicity="0..1" />
           <End Role="Participants_Courses" Type="Self.Participants_Courses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseInfo">
@@ -325,7 +325,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Teachers_Courses_CourseInfo">
-          <End Role="CourseInfo" Type="Self.CourseInfo" Multiplicity="0..1" />
+          <End Role="CourseInfo" Type="AttendanceListDbModel.CourseInfo" Multiplicity="0..1" />
           <End Role="Teachers_Courses" Type="Self.Teachers_Courses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseInfo">
@@ -337,7 +337,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TimeRegistration_CourseInfo">
-          <End Role="CourseInfo" Type="Self.CourseInfo" Multiplicity="0..1" />
+          <End Role="CourseInfo" Type="AttendanceListDbModel.CourseInfo" Multiplicity="0..1" />
           <End Role="TimeRegistration" Type="Self.TimeRegistration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseInfo">
@@ -385,7 +385,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AttendanceListDbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CourseInfoes" EntityType="Self.CourseInfo" />
+          <EntitySet Name="CourseInfoes" EntityType="AttendanceListDbModel.CourseInfo" />
           <EntitySet Name="NonCourseDays" EntityType="Self.NonCourseDay" />
           <EntitySet Name="Participants" EntityType="Self.Participant" />
           <EntitySet Name="Participants_Courses" EntityType="Self.Participants_Courses" />
