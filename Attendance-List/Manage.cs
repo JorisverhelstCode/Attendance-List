@@ -18,9 +18,10 @@ namespace Attendance_List
             InitializeComponent();
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
-                if (context.CourseInfoes.Count() != 0)
+                var Courses = context.CourseInfoes.ToList();
+                if (Courses.Count() != 0)
                 {
-                    foreach (var item in context.CourseInfoes)
+                    foreach (var item in Courses)
                     {
                         LstBoxCourses.Items.Add(item);
                     }
@@ -39,9 +40,14 @@ namespace Attendance_List
 
         private void BtnDeleteCourse_Click(object sender, EventArgs e)
         {
-            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            var toBeDeleted = LstBoxCourses.SelectedItem;
+            var ConfirmationBoxAnswer = MessageBox.Show($"Deleting {toBeDeleted}", $"Are you sure you want to delete {toBeDeleted}", MessageBoxButtons.YesNo);
+            if (toBeDeleted != null && ConfirmationBoxAnswer == DialogResult.Yes)
             {
-                context.CourseInfoes.Remove((CourseInfo)LstBoxCourses.SelectedItem);
+                using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+                {
+                    context.CourseInfoes.Remove((CourseInfo)LstBoxCourses.SelectedItem);
+                }
             }
         }
 
@@ -50,5 +56,7 @@ namespace Attendance_List
             CourseDetails details = new CourseDetails();
             details.Show();
         }
+
+
     }
 }

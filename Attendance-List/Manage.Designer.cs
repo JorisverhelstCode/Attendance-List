@@ -93,7 +93,7 @@ namespace Attendance_List
 
         private void Manage_Load(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
