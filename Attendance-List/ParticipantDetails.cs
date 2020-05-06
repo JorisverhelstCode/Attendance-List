@@ -14,15 +14,25 @@ namespace Attendance_List
     public partial class ParticipantDetails : Form
     {
         public Participant ThisParticipant { get; set; }
-        public ParticipantDetails(Participant part)
+        private ErrorProvider EmptyError;
+
+        public ParticipantDetails()
         {
             InitializeComponent();
+        }
+
+        public ParticipantDetails(Participant part) : this()
+        {
             ThisParticipant = part;
         }
 
         private void LstBoxCourses_DoubleClick(object sender, EventArgs e)
         {
-
+            if (LstBoxCourses.SelectedItem != null)
+            {
+                var course = new CourseDetails((CourseInfo)LstBoxCourses.SelectedItem);
+                course.Show();
+            }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -31,15 +41,24 @@ namespace Attendance_List
             {
                 using (AttendanceListDbEntities context = new AttendanceListDbEntities())
                 {
-                    var current = context.Participants.Where(x => x.ID == ThisParticipant.ID);
-                    
+                    context.Participants.Where(x => x.ID == ThisParticipant.ID).ToList()[0].Name = TxtName.Text;
+                    context.SaveChanges();
                 }
             }
         }
 
         private void BtnQuit_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void ParticipantDetails_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (TxtName.Text == "")
+            {
+                EmptyError.SetError(TxtName, "You must give the participant a name!");
+                e.Cancel = true;
+            }
         }
     }
 }

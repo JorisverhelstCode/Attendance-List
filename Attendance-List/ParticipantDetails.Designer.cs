@@ -93,6 +93,7 @@
             this.Controls.Add(this.LblName);
             this.Name = "ParticipantDetails";
             this.Text = "ParticipantDetails";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParticipantDetails_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
