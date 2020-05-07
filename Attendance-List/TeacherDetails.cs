@@ -122,5 +122,13 @@ namespace Attendance_List
         {
             OnClosingEvent?.Invoke(this, new OnClosingEventArgs());
         }
+
+        private void ParticipantForm_OnClosingEvent(object sender, OnClosingEventArgs e)
+        {
+            var temp = (ParticipantDetails)sender;
+            temp.OnClosingEvent -= ParticipantForm_OnClosingEvent;
+            Children.Remove(temp);
+            
+        }
     }
 }

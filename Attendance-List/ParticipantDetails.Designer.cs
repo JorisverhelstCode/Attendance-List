@@ -63,9 +63,9 @@
             // 
             this.LstBoxCourses.FormattingEnabled = true;
             this.LstBoxCourses.ItemHeight = 16;
-            this.LstBoxCourses.Location = new System.Drawing.Point(17, 120);
+            this.LstBoxCourses.Location = new System.Drawing.Point(17, 104);
             this.LstBoxCourses.Name = "LstBoxCourses";
-            this.LstBoxCourses.Size = new System.Drawing.Size(327, 244);
+            this.LstBoxCourses.Size = new System.Drawing.Size(327, 260);
             this.LstBoxCourses.TabIndex = 2;
             this.LstBoxCourses.DoubleClick += new System.EventHandler(this.LstBoxCourses_DoubleClick);
             // 
@@ -108,7 +108,7 @@
             // LblBirthday
             // 
             this.LblBirthday.AutoSize = true;
-            this.LblBirthday.Location = new System.Drawing.Point(431, 115);
+            this.LblBirthday.Location = new System.Drawing.Point(431, 104);
             this.LblBirthday.Name = "LblBirthday";
             this.LblBirthday.Size = new System.Drawing.Size(85, 17);
             this.LblBirthday.TabIndex = 7;
@@ -116,7 +116,7 @@
             // 
             // DTPDayOfBirth
             // 
-            this.DTPDayOfBirth.Location = new System.Drawing.Point(434, 161);
+            this.DTPDayOfBirth.Location = new System.Drawing.Point(434, 154);
             this.DTPDayOfBirth.Name = "DTPDayOfBirth";
             this.DTPDayOfBirth.Size = new System.Drawing.Size(290, 22);
             this.DTPDayOfBirth.TabIndex = 8;
@@ -132,7 +132,7 @@
             // 
             // TxtBadge
             // 
-            this.TxtBadge.Location = new System.Drawing.Point(434, 264);
+            this.TxtBadge.Location = new System.Drawing.Point(434, 260);
             this.TxtBadge.Name = "TxtBadge";
             this.TxtBadge.Size = new System.Drawing.Size(149, 22);
             this.TxtBadge.TabIndex = 10;
@@ -140,7 +140,7 @@
             // LblCourses
             // 
             this.LblCourses.AutoSize = true;
-            this.LblCourses.Location = new System.Drawing.Point(14, 82);
+            this.LblCourses.Location = new System.Drawing.Point(14, 61);
             this.LblCourses.Name = "LblCourses";
             this.LblCourses.Size = new System.Drawing.Size(64, 17);
             this.LblCourses.TabIndex = 11;

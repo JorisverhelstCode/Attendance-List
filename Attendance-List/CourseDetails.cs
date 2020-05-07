@@ -86,7 +86,7 @@ namespace Attendance_List
                 Course.ContactPerson = TxtContactPerson.Text;
                 Course.CourseInstitution = TxtInstitution.Text;
                 Course.OeNumber = Convert.ToInt32(TxtOeNumber.Text);
-                Course.CourseCode = Convert.ToInt32(TxtCourseCode);
+                Course.CourseCode = Convert.ToInt32(TxtCourseCode.Text);
                 Course.EndDate = DTPEndDate.Value;
                 Course.StartDate = DTPStartDate.Value;
                 Course.Location = TxtLocation.Text;
@@ -197,11 +197,6 @@ namespace Attendance_List
         }
 
         private void CourseDetails_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            RaiseClosingevent();
-        }
-
-        public void RaiseClosingevent()
         {
             OnClosingEvent?.Invoke(this, new OnClosingEventArgs());
         }
