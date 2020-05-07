@@ -15,6 +15,7 @@ namespace Attendance_List
     {
         CourseInfo Course;
         public event EventHandler<OnClosingEventArgs> OnClosingEvent;
+        public event EventHandler<OnAddedEventArgs> OnAddedEvent;
         private List<Form> Children;
         public SelectTeacher(CourseInfo course)
         {
@@ -46,6 +47,7 @@ namespace Attendance_List
                     context.Teachers_Courses.Add(relation);
                     context.SaveChanges();
                 }
+                OnAddedEvent?.Invoke(this, new OnAddedEventArgs());
                 RefreshList();
             }
         }

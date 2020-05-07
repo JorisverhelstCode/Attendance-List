@@ -72,6 +72,7 @@
     <Compile Include="Manage.Designer.cs">
       <DependentUpon>Manage.cs</DependentUpon>
     </Compile>
+    <Compile Include="OnAddedEventArgs.cs" />
     <Compile Include="OnClosingEventArgs.cs" />
     <Compile Include="ParticipantDetails.cs">
       <SubType>Form</SubType>

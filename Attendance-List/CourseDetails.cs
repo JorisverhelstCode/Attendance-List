@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -52,12 +53,27 @@ namespace Attendance_List
             var participantList = new SelectParticipant(Course);
             Children.Add(participantList);
             participantList.OnClosingEvent += ParticipantList_OnClosingEvent;
+            participantList.OnAddedEvent += ParticipantList_OnAddedEvent;
             participantList.Show();
         }
 
         private void BtnRemoveParticipant_Click(object sender, EventArgs e)
         {
-
+            if (LstParticipants.SelectedItem != null)
+            {
+                var tempParticipant = (Participant)LstParticipants.SelectedItem;
+                var sure = MessageBox.Show($"Are you sure you want to remove {tempParticipant.Name} from {Course.Course}?", $"Removing {tempParticipant.Name}", MessageBoxButtons.YesNo);
+                if (sure == DialogResult.Yes)
+                {
+                    using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+                    {
+                        var tobeRemoved = (Participants_Courses)context.Participants_Courses.Where(x => x.CourseID == Course.ID && x.ParticipantID == tempParticipant.ID).FirstOrDefault();
+                        context.Participants_Courses.Remove(tobeRemoved);
+                        context.SaveChanges();
+                    }
+                    RefreshParticipants();
+                }
+            }
         }
 
         private void BtnAddTeacher_Click(object sender, EventArgs e)
@@ -65,12 +81,27 @@ namespace Attendance_List
             var teacherList = new SelectTeacher(Course);
             Children.Add(teacherList);
             teacherList.OnClosingEvent += TeacherList_OnClosingEvent;
+            teacherList.OnAddedEvent += TeacherList_OnAddedEvent;
             teacherList.Show();
         }
 
         private void BtnRemoveTeacher_Click(object sender, EventArgs e)
         {
-
+            if (LstTeachers.SelectedItem != null)
+            {
+                var tempTeacher = (Teacher)LstTeachers.SelectedItem;
+                var sure = MessageBox.Show($"Are you sure you want to remove {tempTeacher.Name} from {Course.Course}?", $"Removing {tempTeacher.Name}", MessageBoxButtons.YesNo);
+                if (sure == DialogResult.Yes)
+                {
+                    using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+                    {
+                        var tobeRemoved = (Teachers_Courses)context.Teachers_Courses.Where(x => x.CourseID == Course.ID && x.TeacherID == tempTeacher.ID).FirstOrDefault();
+                        context.Teachers_Courses.Remove(tobeRemoved);
+                        context.SaveChanges();
+                    }
+                    RefreshTeachers();
+                }
+            }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -228,7 +259,13 @@ namespace Attendance_List
         {
             var temp = (SelectParticipant)sender;
             temp.OnClosingEvent -= ParticipantList_OnClosingEvent;
+            temp.OnAddedEvent -= ParticipantList_OnAddedEvent;
             Children.Remove(temp);
+            RefreshParticipants();
+        }
+
+        private void ParticipantList_OnAddedEvent(object sender, OnAddedEventArgs e)
+        {
             RefreshParticipants();
         }
 
@@ -244,7 +281,13 @@ namespace Attendance_List
         {
             var temp = (SelectTeacher)sender;
             temp.OnClosingEvent -= TeacherList_OnClosingEvent;
+            temp.OnAddedEvent -= TeacherList_OnAddedEvent;
             Children.Remove(temp);
+            RefreshTeachers();
+        }
+
+        private void TeacherList_OnAddedEvent(object sender, OnAddedEventArgs e)
+        {
             RefreshTeachers();
         }
 
