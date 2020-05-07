@@ -13,17 +13,18 @@ namespace Attendance_List
 {
     public partial class ParticipantDetails : Form
     {
-        public Participant ThisParticipant { get; set; }
+        public Participant ThisParticipant { get; set; } = new Participant();
         private ErrorProvider EmptyError;
-        private bool NewEntry;
+        private bool NewEntry = true;
+        public event EventHandler<OnClosingEventArgs> OnClosingEvent;
+        private List<Form> Children;
 
         public ParticipantDetails()
         {
             InitializeComponent();
-            ThisParticipant = new Participant();
             ThisParticipant.DateOfBirth = DTPDayOfBirth.Value;
             EmptyError = new ErrorProvider();
-            NewEntry = true;
+            Children = new List<Form>();
         }
 
         public ParticipantDetails(Participant part) : this()
@@ -137,6 +138,11 @@ namespace Attendance_List
             EmptyError.SetError(TxtName, "");
             EmptyError.SetError(TxtBadge, "");
             EmptyError.SetError(DTPDayOfBirth, "");
+        }
+
+        private void ParticipantDetails_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnClosingEvent?.Invoke(this, new OnClosingEventArgs());
         }
     }
 }

@@ -59,8 +59,7 @@ namespace Attendance_List
 
         private void BtnAddParticipant_Click(object sender, EventArgs e)
         {
-            var Participant = new ParticipantDetails();
-            Participant.Show();
+            
         }
 
         private void BtnRemoveParticipant_Click(object sender, EventArgs e)
@@ -205,6 +204,42 @@ namespace Attendance_List
         public void RaiseClosingevent()
         {
             OnClosingEvent?.Invoke(this, new OnClosingEventArgs());
+        }
+
+        private void LstParticipants_DoubleClick(object sender, EventArgs e)
+        {
+            if (LstParticipants.SelectedItem != null)
+            {
+                var participant = new ParticipantDetails((Participant)LstParticipants.SelectedItem);
+                Children.Add(participant);
+                participant.Show();
+            }
+        }
+
+        private void LstTeachers_DoubleClick(object sender, EventArgs e)
+        {
+            if (LstTeachers.SelectedItem != null)
+            {
+                var teacher = new TeacherDetails((Teacher)LstTeachers.SelectedItem);
+                Children.Add(teacher);
+                teacher.Show();
+            }
+        }
+
+        private void ParticipantForm_OnClosingEvent(object sender, OnClosingEventArgs e)
+        {
+            var temp = (ParticipantDetails)sender;
+            temp.OnClosingEvent -= ParticipantForm_OnClosingEvent;
+            Children.Remove(temp);
+            LstParticipants.Items.Clear();
+            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            {
+               foreach (var item in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
+               {
+                   var participant = context.Participants.Where(x => x.ID == item.ParticipantID);
+                   LstParticipants.Items.Add(participant);
+               }
+            }
         }
     }
 }

@@ -81,6 +81,7 @@
             this.LstParticipants.Name = "LstParticipants";
             this.LstParticipants.Size = new System.Drawing.Size(278, 356);
             this.LstParticipants.TabIndex = 2;
+            this.LstParticipants.DoubleClick += new System.EventHandler(this.LstParticipants_DoubleClick);
             // 
             // LstTeachers
             // 
@@ -90,6 +91,7 @@
             this.LstTeachers.Name = "LstTeachers";
             this.LstTeachers.Size = new System.Drawing.Size(279, 228);
             this.LstTeachers.TabIndex = 3;
+            this.LstTeachers.DoubleClick += new System.EventHandler(this.LstTeachers_DoubleClick);
             // 
             // LblParticipants
             // 

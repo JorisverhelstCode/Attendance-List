@@ -169,6 +169,7 @@
             this.Name = "ParticipantDetails";
             this.Text = "ParticipantDetails";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParticipantDetails_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ParticipantDetails_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
