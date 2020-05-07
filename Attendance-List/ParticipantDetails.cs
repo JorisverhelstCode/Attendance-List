@@ -30,6 +30,10 @@ namespace Attendance_List
         {
             ThisParticipant = part;
             NewEntry = false;
+            TxtName.Text = ThisParticipant.Name;
+            TxtBadge.Text = ThisParticipant.BadgeNumber + "";
+            TxtAdress.Text = ThisParticipant.Adress;
+            DTPDayOfBirth.Value = ThisParticipant.DateOfBirth != null ? (DateTime)ThisParticipant.DateOfBirth : new DateTime();
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
                 foreach (var item in context.Participants_Courses.Where(x => x.ParticipantID == ThisParticipant.ID))

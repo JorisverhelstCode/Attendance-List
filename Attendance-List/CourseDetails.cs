@@ -14,10 +14,14 @@ namespace Attendance_List
     public partial class CourseDetails : Form
     {
         public CourseInfo Course { get; set; }
+        private bool NewEntry;
+        private ErrorProvider EmptyError;
         public CourseDetails(CourseInfo course)
         {
             InitializeComponent();
+            NewEntry = false;
             Course = course;
+            EmptyError = new ErrorProvider();
             SetInfoRight();
         }
 
@@ -25,33 +29,32 @@ namespace Attendance_List
         {
             InitializeComponent();
             Course = new CourseInfo();
+            NewEntry = true;
+            EmptyError = new ErrorProvider();
         }
 
         private void SetInfoRight()
         {
+            TxtContactPerson.Text = Course.ContactPerson;
+            TxtCourseCode.Text = Course.CourseCode + "";
+            TxtOeNumber.Text = Course.OeNumber + "";
+            txtInstitution.Text = Course.CourseInstitution;
+            txtLocation.Text = Course.Location;
+            TxtName.Text = Course.Course;
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
-                /*var innerJoinQuery = from participant in context.Participants
-                                     join participantCourse in context.Participants_Courses on participant.ID equals participantCourse.CourseID
-                                     join course in context.CourseInfoes on participantCourse.CourseID equals course.ID
-                                     select new { ProductName = product.Name, Category = category.Name };
-                
-                foreach (var item in context.Teachers.Where())
+                foreach (var item in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
                 {
-                    LstTeachers.Items.Add(item);
+                    var participant = context.Participants.Where(x => x.ID == item.ParticipantID);
+                    LstParticipants.Items.Add(participant);
                 }
-
-                txtName.Text = Course.Course;
-                txtLocation.Text = Course.Location;
-                TxtContactPerson.Text = Course.ContactPerson;
-                TxtCourseCode.Text = Course.CourseCode.ToString();
-                TxtOeNumber.Text = Course.OeNumber.ToString();
-                txtInstitution.Text = Course.CourseInstitution;
-                */
+                foreach (var item in context.Teachers_Courses.Where(x => x.CourseID == Course.ID))
+                {
+                    var teacher = context.Teachers.Where(x => x.ID == item.TeacherID);
+                    LstParticipants.Items.Add(teacher);
+                }
             }
         }
-
-        
 
         private void BtnAddParticipant_Click(object sender, EventArgs e)
         {
@@ -82,6 +85,27 @@ namespace Attendance_List
         private void BtnQuit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private bool CustomValidation()
+        {
+            bool Allgood = true;
+            if (String.IsNullOrEmpty(TxtName.Text))
+            {
+                EmptyError.SetError(TxtName, "You must give the course a name!");
+                Allgood = false;
+            }
+            if (String.IsNullOrEmpty(TxtCourseCode.Text))
+            {
+                EmptyError.SetError(TxtCourseCode, "You must give the participant a badge number!");
+                Allgood = false;
+            }
+            if (DTPDayOfBirth.Value.Year > DateTime.Today.Year || DTPDayOfBirth.Value.Year < 1920)
+            {
+                EmptyError.SetError(DTPDayOfBirth, "Please select a valid date!");
+                Allgood = false;
+            }
+            return Allgood;
         }
     }
 }

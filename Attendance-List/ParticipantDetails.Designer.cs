@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParticipantDetails));
             this.LblName = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
             this.LstBoxCourses = new System.Windows.Forms.ListBox();
@@ -162,6 +163,9 @@
             this.Controls.Add(this.LstBoxCourses);
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.LblName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(756, 517);
+            this.MinimumSize = new System.Drawing.Size(756, 517);
             this.Name = "ParticipantDetails";
             this.Text = "ParticipantDetails";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParticipantDetails_FormClosing);

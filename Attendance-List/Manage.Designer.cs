@@ -86,6 +86,8 @@ namespace Attendance_List
             this.Controls.Add(this.BtnOpen);
             this.Controls.Add(this.LstBoxCourses);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(808, 576);
+            this.MinimumSize = new System.Drawing.Size(808, 576);
             this.Name = "Manage";
             this.Text = "Manage Attendences";
             this.Load += new System.EventHandler(this.Manage_Load);

@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtName = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CourseDetails));
+            this.TxtName = new System.Windows.Forms.TextBox();
             this.LblName = new System.Windows.Forms.Label();
             this.LstParticipants = new System.Windows.Forms.ListBox();
             this.LstTeachers = new System.Windows.Forms.ListBox();
@@ -50,14 +51,18 @@
             this.BtnRemoveTeacher = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnQuit = new System.Windows.Forms.Button();
+            this.DTPStartDate = new System.Windows.Forms.DateTimePicker();
+            this.DTPEndDate = new System.Windows.Forms.DateTimePicker();
+            this.LblStartDate = new System.Windows.Forms.Label();
+            this.LblEndDate = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtName
+            // TxtName
             // 
-            this.txtName.Location = new System.Drawing.Point(16, 58);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(320, 22);
-            this.txtName.TabIndex = 0;
+            this.TxtName.Location = new System.Drawing.Point(16, 58);
+            this.TxtName.Name = "TxtName";
+            this.TxtName.Size = new System.Drawing.Size(320, 22);
+            this.TxtName.TabIndex = 0;
             // 
             // LblName
             // 
@@ -72,7 +77,7 @@
             // 
             this.LstParticipants.FormattingEnabled = true;
             this.LstParticipants.ItemHeight = 16;
-            this.LstParticipants.Location = new System.Drawing.Point(378, 58);
+            this.LstParticipants.Location = new System.Drawing.Point(375, 71);
             this.LstParticipants.Name = "LstParticipants";
             this.LstParticipants.Size = new System.Drawing.Size(278, 356);
             this.LstParticipants.TabIndex = 2;
@@ -83,7 +88,7 @@
             this.LstTeachers.ItemHeight = 16;
             this.LstTeachers.Location = new System.Drawing.Point(737, 58);
             this.LstTeachers.Name = "LstTeachers";
-            this.LstTeachers.Size = new System.Drawing.Size(279, 244);
+            this.LstTeachers.Size = new System.Drawing.Size(279, 228);
             this.LstTeachers.TabIndex = 3;
             // 
             // LblParticipants
@@ -127,7 +132,7 @@
             // LblInstitution
             // 
             this.LblInstitution.AutoSize = true;
-            this.LblInstitution.Location = new System.Drawing.Point(13, 110);
+            this.LblInstitution.Location = new System.Drawing.Point(13, 103);
             this.LblInstitution.Name = "LblInstitution";
             this.LblInstitution.Size = new System.Drawing.Size(72, 17);
             this.LblInstitution.TabIndex = 8;
@@ -135,14 +140,14 @@
             // 
             // txtInstitution
             // 
-            this.txtInstitution.Location = new System.Drawing.Point(16, 150);
+            this.txtInstitution.Location = new System.Drawing.Point(16, 142);
             this.txtInstitution.Name = "txtInstitution";
             this.txtInstitution.Size = new System.Drawing.Size(320, 22);
             this.txtInstitution.TabIndex = 9;
             // 
             // TxtContactPerson
             // 
-            this.TxtContactPerson.Location = new System.Drawing.Point(16, 224);
+            this.TxtContactPerson.Location = new System.Drawing.Point(16, 221);
             this.TxtContactPerson.Name = "TxtContactPerson";
             this.TxtContactPerson.Size = new System.Drawing.Size(320, 22);
             this.TxtContactPerson.TabIndex = 10;
@@ -150,7 +155,7 @@
             // LblContactPerson
             // 
             this.LblContactPerson.AutoSize = true;
-            this.LblContactPerson.Location = new System.Drawing.Point(15, 191);
+            this.LblContactPerson.Location = new System.Drawing.Point(11, 185);
             this.LblContactPerson.Name = "LblContactPerson";
             this.LblContactPerson.Size = new System.Drawing.Size(109, 17);
             this.LblContactPerson.TabIndex = 11;
@@ -159,7 +164,7 @@
             // LblLocation
             // 
             this.LblLocation.AutoSize = true;
-            this.LblLocation.Location = new System.Drawing.Point(15, 270);
+            this.LblLocation.Location = new System.Drawing.Point(11, 265);
             this.LblLocation.Name = "LblLocation";
             this.LblLocation.Size = new System.Drawing.Size(66, 17);
             this.LblLocation.TabIndex = 12;
@@ -167,15 +172,15 @@
             // 
             // txtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(16, 316);
+            this.txtLocation.Location = new System.Drawing.Point(14, 305);
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(319, 22);
+            this.txtLocation.Size = new System.Drawing.Size(322, 22);
             this.txtLocation.TabIndex = 13;
             // 
             // LblOeNumber
             // 
             this.LblOeNumber.AutoSize = true;
-            this.LblOeNumber.Location = new System.Drawing.Point(15, 377);
+            this.LblOeNumber.Location = new System.Drawing.Point(11, 352);
             this.LblOeNumber.Name = "LblOeNumber";
             this.LblOeNumber.Size = new System.Drawing.Size(81, 17);
             this.LblOeNumber.TabIndex = 14;
@@ -184,7 +189,7 @@
             // LblCourseCode
             // 
             this.LblCourseCode.AutoSize = true;
-            this.LblCourseCode.Location = new System.Drawing.Point(13, 433);
+            this.LblCourseCode.Location = new System.Drawing.Point(13, 397);
             this.LblCourseCode.Name = "LblCourseCode";
             this.LblCourseCode.Size = new System.Drawing.Size(94, 17);
             this.LblCourseCode.TabIndex = 15;
@@ -192,21 +197,21 @@
             // 
             // TxtOeNumber
             // 
-            this.TxtOeNumber.Location = new System.Drawing.Point(167, 375);
+            this.TxtOeNumber.Location = new System.Drawing.Point(140, 352);
             this.TxtOeNumber.Name = "TxtOeNumber";
-            this.TxtOeNumber.Size = new System.Drawing.Size(168, 22);
+            this.TxtOeNumber.Size = new System.Drawing.Size(196, 22);
             this.TxtOeNumber.TabIndex = 16;
             // 
             // TxtCourseCode
             // 
-            this.TxtCourseCode.Location = new System.Drawing.Point(167, 427);
+            this.TxtCourseCode.Location = new System.Drawing.Point(140, 397);
             this.TxtCourseCode.Name = "TxtCourseCode";
-            this.TxtCourseCode.Size = new System.Drawing.Size(167, 22);
+            this.TxtCourseCode.Size = new System.Drawing.Size(196, 22);
             this.TxtCourseCode.TabIndex = 17;
             // 
             // BtnAddTeacher
             // 
-            this.BtnAddTeacher.Location = new System.Drawing.Point(737, 328);
+            this.BtnAddTeacher.Location = new System.Drawing.Point(736, 309);
             this.BtnAddTeacher.Name = "BtnAddTeacher";
             this.BtnAddTeacher.Size = new System.Drawing.Size(133, 65);
             this.BtnAddTeacher.TabIndex = 18;
@@ -216,7 +221,7 @@
             // 
             // BtnRemoveTeacher
             // 
-            this.BtnRemoveTeacher.Location = new System.Drawing.Point(900, 328);
+            this.BtnRemoveTeacher.Location = new System.Drawing.Point(900, 310);
             this.BtnRemoveTeacher.Name = "BtnRemoveTeacher";
             this.BtnRemoveTeacher.Size = new System.Drawing.Size(115, 64);
             this.BtnRemoveTeacher.TabIndex = 19;
@@ -244,11 +249,47 @@
             this.BtnQuit.UseVisualStyleBackColor = true;
             this.BtnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
             // 
+            // DTPStartDate
+            // 
+            this.DTPStartDate.Location = new System.Drawing.Point(140, 433);
+            this.DTPStartDate.Name = "DTPStartDate";
+            this.DTPStartDate.Size = new System.Drawing.Size(200, 22);
+            this.DTPStartDate.TabIndex = 22;
+            // 
+            // DTPEndDate
+            // 
+            this.DTPEndDate.Location = new System.Drawing.Point(140, 473);
+            this.DTPEndDate.Name = "DTPEndDate";
+            this.DTPEndDate.Size = new System.Drawing.Size(200, 22);
+            this.DTPEndDate.TabIndex = 23;
+            // 
+            // LblStartDate
+            // 
+            this.LblStartDate.AutoSize = true;
+            this.LblStartDate.Location = new System.Drawing.Point(13, 438);
+            this.LblStartDate.Name = "LblStartDate";
+            this.LblStartDate.Size = new System.Drawing.Size(76, 17);
+            this.LblStartDate.TabIndex = 24;
+            this.LblStartDate.Text = "Start Date:";
+            // 
+            // LblEndDate
+            // 
+            this.LblEndDate.AutoSize = true;
+            this.LblEndDate.Location = new System.Drawing.Point(13, 478);
+            this.LblEndDate.Name = "LblEndDate";
+            this.LblEndDate.Size = new System.Drawing.Size(71, 17);
+            this.LblEndDate.TabIndex = 25;
+            this.LblEndDate.Text = "End Date:";
+            // 
             // CourseDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1040, 524);
+            this.Controls.Add(this.LblEndDate);
+            this.Controls.Add(this.LblStartDate);
+            this.Controls.Add(this.DTPEndDate);
+            this.Controls.Add(this.DTPStartDate);
             this.Controls.Add(this.BtnQuit);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.BtnRemoveTeacher);
@@ -270,7 +311,10 @@
             this.Controls.Add(this.LstTeachers);
             this.Controls.Add(this.LstParticipants);
             this.Controls.Add(this.LblName);
-            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.TxtName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1058, 571);
+            this.MinimumSize = new System.Drawing.Size(1058, 571);
             this.Name = "CourseDetails";
             this.Text = "CourseDetails";
             this.ResumeLayout(false);
@@ -280,7 +324,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox TxtName;
         private System.Windows.Forms.Label LblName;
         private System.Windows.Forms.ListBox LstParticipants;
         private System.Windows.Forms.ListBox LstTeachers;
@@ -302,5 +346,9 @@
         private System.Windows.Forms.Button BtnRemoveTeacher;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button BtnQuit;
+        private System.Windows.Forms.DateTimePicker DTPStartDate;
+        private System.Windows.Forms.DateTimePicker DTPEndDate;
+        private System.Windows.Forms.Label LblStartDate;
+        private System.Windows.Forms.Label LblEndDate;
     }
 }

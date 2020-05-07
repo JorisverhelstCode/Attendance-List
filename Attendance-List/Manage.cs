@@ -59,7 +59,5 @@ namespace Attendance_List
             CourseDetails details = new CourseDetails();
             details.Show();
         }
-
-
     }
 }
