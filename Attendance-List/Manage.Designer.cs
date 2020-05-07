@@ -30,6 +30,7 @@ namespace Attendance_List
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manage));
             this.LstBoxCourses = new System.Windows.Forms.ListBox();
             this.BtnOpen = new System.Windows.Forms.Button();
             this.BtnCreateCourse = new System.Windows.Forms.Button();
@@ -42,12 +43,12 @@ namespace Attendance_List
             this.LstBoxCourses.ItemHeight = 16;
             this.LstBoxCourses.Location = new System.Drawing.Point(18, 26);
             this.LstBoxCourses.Name = "LstBoxCourses";
-            this.LstBoxCourses.Size = new System.Drawing.Size(319, 420);
+            this.LstBoxCourses.Size = new System.Drawing.Size(319, 388);
             this.LstBoxCourses.TabIndex = 0;
             // 
             // BtnOpen
             // 
-            this.BtnOpen.Location = new System.Drawing.Point(17, 470);
+            this.BtnOpen.Location = new System.Drawing.Point(18, 447);
             this.BtnOpen.Name = "BtnOpen";
             this.BtnOpen.Size = new System.Drawing.Size(319, 55);
             this.BtnOpen.TabIndex = 1;
@@ -84,8 +85,9 @@ namespace Attendance_List
             this.Controls.Add(this.BtnCreateCourse);
             this.Controls.Add(this.BtnOpen);
             this.Controls.Add(this.LstBoxCourses);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Manage";
-            this.Text = "Form1";
+            this.Text = "Manage Attendences";
             this.Load += new System.EventHandler(this.Manage_Load);
             this.ResumeLayout(false);
 

@@ -39,6 +39,7 @@
             this.DTPDayOfBirth = new System.Windows.Forms.DateTimePicker();
             this.LblBadge = new System.Windows.Forms.Label();
             this.TxtBadge = new System.Windows.Forms.TextBox();
+            this.LblCourses = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LblName
@@ -61,9 +62,9 @@
             // 
             this.LstBoxCourses.FormattingEnabled = true;
             this.LstBoxCourses.ItemHeight = 16;
-            this.LstBoxCourses.Location = new System.Drawing.Point(17, 88);
+            this.LstBoxCourses.Location = new System.Drawing.Point(17, 120);
             this.LstBoxCourses.Name = "LstBoxCourses";
-            this.LstBoxCourses.Size = new System.Drawing.Size(327, 276);
+            this.LstBoxCourses.Size = new System.Drawing.Size(327, 244);
             this.LstBoxCourses.TabIndex = 2;
             this.LstBoxCourses.DoubleClick += new System.EventHandler(this.LstBoxCourses_DoubleClick);
             // 
@@ -76,7 +77,6 @@
             this.BtnSave.Text = "Save";
             this.BtnSave.UseVisualStyleBackColor = true;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.BtnSave.Validating += new System.ComponentModel.CancelEventHandler(this.BtnSave_Validating);
             // 
             // BtnQuit
             // 
@@ -136,11 +136,21 @@
             this.TxtBadge.Size = new System.Drawing.Size(149, 22);
             this.TxtBadge.TabIndex = 10;
             // 
+            // LblCourses
+            // 
+            this.LblCourses.AutoSize = true;
+            this.LblCourses.Location = new System.Drawing.Point(14, 82);
+            this.LblCourses.Name = "LblCourses";
+            this.LblCourses.Size = new System.Drawing.Size(64, 17);
+            this.LblCourses.TabIndex = 11;
+            this.LblCourses.Text = "Courses:";
+            // 
             // ParticipantDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(738, 470);
+            this.Controls.Add(this.LblCourses);
             this.Controls.Add(this.TxtBadge);
             this.Controls.Add(this.LblBadge);
             this.Controls.Add(this.DTPDayOfBirth);
@@ -173,5 +183,6 @@
         private System.Windows.Forms.DateTimePicker DTPDayOfBirth;
         private System.Windows.Forms.Label LblBadge;
         private System.Windows.Forms.TextBox TxtBadge;
+        private System.Windows.Forms.Label LblCourses;
     }
 }

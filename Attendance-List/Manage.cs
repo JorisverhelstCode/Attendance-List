@@ -16,7 +16,7 @@ namespace Attendance_List
         public Manage()
         {
             InitializeComponent();
-            /*using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
                 var Courses = context.CourseInfoes.ToList();
                 if (Courses.Count() != 0)
@@ -26,7 +26,7 @@ namespace Attendance_List
                         LstBoxCourses.Items.Add(item);
                     }
                 }
-            }*/
+            }
         }
 
         private void BtnOpen_Click(object sender, EventArgs e)

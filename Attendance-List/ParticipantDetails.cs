@@ -21,6 +21,7 @@ namespace Attendance_List
         {
             InitializeComponent();
             ThisParticipant = new Participant();
+            ThisParticipant.DateOfBirth = DTPDayOfBirth.Value;
             EmptyError = new ErrorProvider();
             NewEntry = true;
         }
@@ -29,6 +30,14 @@ namespace Attendance_List
         {
             ThisParticipant = part;
             NewEntry = false;
+            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            {
+                foreach (var item in context.Participants_Courses.Where(x => x.ParticipantID == ThisParticipant.ID))
+                {
+                    var course = context.CourseInfoes.Where(x => x.ID == item.CourseID);
+                    LstBoxCourses.Items.Add(course);
+                }
+            }
         }
 
         private void LstBoxCourses_DoubleClick(object sender, EventArgs e)
@@ -42,21 +51,26 @@ namespace Attendance_List
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (NewEntry)
+            if (CustomValidation())
             {
+                RestoreEmptyError();
+                ThisParticipant.Name = TxtName.Text;
+                ThisParticipant.BadgeNumber = Convert.ToInt32(TxtBadge.Text);
+                ThisParticipant.Adress = TxtAdress.Text;
+                ThisParticipant.DateOfBirth = DTPDayOfBirth.Value;
                 using (AttendanceListDbEntities context = new AttendanceListDbEntities())
                 {
-                    ThisParticipant.Name = TxtName.Text;
-                    context.Participants.Add(ThisParticipant);
+                    if (NewEntry)
+                    {
+                        context.Participants.Add(ThisParticipant);
+                    }
+                    else
+                    {
+                        context.Participants.Where(x => x.ID == ThisParticipant.ID).ToList()[0] = ThisParticipant;
+                    }
                     context.SaveChanges();
                 }
-            } else if (TxtName.Text != ThisParticipant.Name)
-            {
-                using (AttendanceListDbEntities context = new AttendanceListDbEntities())
-                {
-                    context.Participants.Where(x => x.ID == ThisParticipant.ID).ToList()[0].Name = TxtName.Text;
-                    context.SaveChanges();
-                }
+                this.Close();
             }
         }
 
@@ -71,16 +85,54 @@ namespace Attendance_List
             {
                 EmptyError.SetError(TxtName, "You can't just steal this man's name!");
                 e.Cancel = true;
+            } else 
+            if (TxtName.Text != ThisParticipant.Name || TxtAdress.Text != ThisParticipant.Adress
+                || Convert.ToInt32(TxtBadge.Text) != ThisParticipant.BadgeNumber || DTPDayOfBirth.Value != ThisParticipant.DateOfBirth)
+            {
+                string errorMessage;
+                if (NewEntry)
+                {
+                    errorMessage = "Quiting new participant";
+                }
+                else
+                {
+                    errorMessage = $"Quiting Participant {ThisParticipant.Name}";
+                }
+                var SureYouWantToQuit = MessageBox.Show("Are you sure you want to quit without saving?",
+                    errorMessage, MessageBoxButtons.YesNo);
+                if (SureYouWantToQuit == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
 
-        private void BtnSave_Validating(object sender, CancelEventArgs e)
+        private bool CustomValidation()
         {
-            if (TxtName.Text == "")
+            bool Allgood = true;
+            if (String.IsNullOrEmpty(TxtName.Text))
             {
                 EmptyError.SetError(TxtName, "You must give the participant a name!");
-                e.Cancel = true;
+                Allgood = false;
             }
+            if (String.IsNullOrEmpty(TxtBadge.Text))
+            {
+                EmptyError.SetError(TxtBadge, "You must give the participant a badge number!");
+                Allgood = false;
+            }
+            if (DTPDayOfBirth.Value.Year > DateTime.Today.Year || DTPDayOfBirth.Value.Year < 1920)
+            {
+                EmptyError.SetError(DTPDayOfBirth, "Please select a valid date!");
+                Allgood = false;
+            }
+            return Allgood;
+        }
+
+        private void RestoreEmptyError()
+        {
+            EmptyError.SetError(TxtName, "");
+            EmptyError.SetError(TxtBadge, "");
+            EmptyError.SetError(DTPDayOfBirth, "");
         }
     }
 }
