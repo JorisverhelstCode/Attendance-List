@@ -99,5 +99,10 @@ namespace Attendance_List
                 }
             }
         }
+
+        private void BtnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

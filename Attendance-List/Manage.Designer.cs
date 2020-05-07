@@ -35,6 +35,7 @@ namespace Attendance_List
             this.BtnOpen = new System.Windows.Forms.Button();
             this.BtnCreateCourse = new System.Windows.Forms.Button();
             this.BtnDeleteCourse = new System.Windows.Forms.Button();
+            this.BtnQuit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LstBoxCourses
@@ -77,11 +78,22 @@ namespace Attendance_List
             this.BtnDeleteCourse.UseVisualStyleBackColor = true;
             this.BtnDeleteCourse.Click += new System.EventHandler(this.BtnDeleteCourse_Click);
             // 
+            // BtnQuit
+            // 
+            this.BtnQuit.Location = new System.Drawing.Point(374, 447);
+            this.BtnQuit.Name = "BtnQuit";
+            this.BtnQuit.Size = new System.Drawing.Size(404, 55);
+            this.BtnQuit.TabIndex = 4;
+            this.BtnQuit.Text = "Quit";
+            this.BtnQuit.UseVisualStyleBackColor = true;
+            this.BtnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
+            // 
             // Manage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(790, 529);
+            this.Controls.Add(this.BtnQuit);
             this.Controls.Add(this.BtnDeleteCourse);
             this.Controls.Add(this.BtnCreateCourse);
             this.Controls.Add(this.BtnOpen);
@@ -108,6 +120,7 @@ namespace Attendance_List
         private System.Windows.Forms.Button BtnOpen;
         private System.Windows.Forms.Button BtnCreateCourse;
         private System.Windows.Forms.Button BtnDeleteCourse;
+        private System.Windows.Forms.Button BtnQuit;
     }
 }
 

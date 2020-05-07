@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectTeacher));
             this.LblAddingTo = new System.Windows.Forms.Label();
             this.LblCourseName = new System.Windows.Forms.Label();
             this.LblFilter = new System.Windows.Forms.Label();
@@ -114,6 +115,7 @@
             this.Controls.Add(this.LblFilter);
             this.Controls.Add(this.LblCourseName);
             this.Controls.Add(this.LblAddingTo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SelectTeacher";
             this.Text = "SelectTeacher";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectTeacher_FormClosing);

@@ -44,6 +44,8 @@ namespace Attendance_List
             TxtInstitution.Text = Course.CourseInstitution;
             TxtLocation.Text = Course.Location;
             TxtName.Text = Course.Course;
+            DTPEndDate.Value = Course.EndDate;
+            DTPStartDate.Value = Course.StartDate;
             RefreshParticipants();
             RefreshTeachers();
         }
