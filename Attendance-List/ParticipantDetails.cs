@@ -30,6 +30,7 @@ namespace Attendance_List
         public ParticipantDetails(Participant part) : this()
         {
             ThisParticipant = part;
+            this.Text = part.Name;
             NewEntry = false;
             TxtName.Text = ThisParticipant.Name;
             TxtBadge.Text = ThisParticipant.BadgeNumber + "";
@@ -94,7 +95,7 @@ namespace Attendance_List
                 e.Cancel = true;
             } else 
             if (TxtName.Text != ThisParticipant.Name || TxtAdress.Text != ThisParticipant.Adress
-                || Convert.ToInt32(TxtBadge.Text) != ThisParticipant.BadgeNumber || DTPDayOfBirth.Value != ThisParticipant.DateOfBirth)
+                || Convert.ToInt32(TxtBadge.Text) != ThisParticipant.BadgeNumber)
             {
                 string errorMessage;
                 if (NewEntry)

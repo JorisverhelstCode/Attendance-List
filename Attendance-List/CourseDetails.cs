@@ -31,6 +31,7 @@ namespace Attendance_List
         {
             NewEntry = false;
             Course = course;
+            this.Text = Course.Course;
             SetInfoRight();
         }
 
@@ -168,9 +169,8 @@ namespace Attendance_List
             }
             else
             {
-                if (TxtName.Text != Course.Course || TxtContactPerson.Text != Course.ContactPerson || Convert.ToInt32(TxtCourseCode) != Course.CourseCode
-                || Convert.ToInt32(TxtOeNumber.Text) != Course.OeNumber || TxtInstitution.Text != Course.CourseInstitution || TxtLocation.Text != Course.Location
-                || DTPStartDate.Value != Course.StartDate || DTPEndDate.Value != Course.EndDate)
+                if (TxtName.Text != Course.Course || TxtContactPerson.Text != Course.ContactPerson || Convert.ToInt32(TxtCourseCode.Text) != Course.CourseCode
+                || Convert.ToInt32(TxtOeNumber.Text) != Course.OeNumber || TxtInstitution.Text != Course.CourseInstitution || TxtLocation.Text != Course.Location)
                 {
                     string errorMessage;
                     if (NewEntry)
@@ -255,7 +255,7 @@ namespace Attendance_List
             {
                 foreach (var item in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
                 {
-                    var participant = context.Participants.Where(x => x.ID == item.ParticipantID);
+                    var participant = context.Participants.Where(x => x.ID == item.ParticipantID).FirstOrDefault();
                     LstParticipants.Items.Add(participant);
                 }
             }
@@ -268,7 +268,7 @@ namespace Attendance_List
             {
                 foreach (var item in context.Teachers_Courses.Where(x => x.CourseID == Course.ID))
                 {
-                    var teacher = context.Teachers.Where(x => x.ID == item.TeacherID);
+                    var teacher = context.Teachers.Where(x => x.ID == item.TeacherID).FirstOrDefault();
                     LstTeachers.Items.Add(teacher);
                 }
             }

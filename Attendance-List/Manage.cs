@@ -18,17 +18,7 @@ namespace Attendance_List
         {
             InitializeComponent();
             FormsOpen = new List<CourseDetails>();
-            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
-            {
-                var Courses = context.CourseInfoes.ToList();
-                if (Courses.Count() != 0)
-                {
-                    foreach (var item in Courses)
-                    {
-                        LstBoxCourses.Items.Add(item);
-                    }
-                }
-            }
+            RefreshCourses();
         }
 
         private void BtnOpen_Click(object sender, EventArgs e)
@@ -80,6 +70,22 @@ namespace Attendance_List
             CourseDetails temp = (CourseDetails)sender;
             temp.OnClosingEvent -= CourseCreated_OnClosingEvent;
             FormsOpen.Remove(temp);
+            RefreshCourses();
+        }
+
+        private void LstBoxCourses_DoubleClick(object sender, EventArgs e)
+        {
+            if (LstBoxCourses.SelectedItem != null)
+            {
+                CourseDetails details = new CourseDetails((CourseInfo)LstBoxCourses.SelectedItem);
+                details.Show();
+                FormsOpen.Add(details);
+                details.OnClosingEvent += CourseCreated_OnClosingEvent;
+            }
+        }
+
+        private void RefreshCourses()
+        {
             LstBoxCourses.Items.Clear();
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
@@ -91,17 +97,6 @@ namespace Attendance_List
                         LstBoxCourses.Items.Add(item);
                     }
                 }
-            }
-        }
-
-        private void LstBoxCourses_DoubleClick(object sender, EventArgs e)
-        {
-            if (LstBoxCourses.SelectedItem != null)
-            {
-                CourseDetails details = new CourseDetails((CourseInfo)LstBoxCourses.SelectedItem);
-                details.Show();
-                FormsOpen.Add(details);
-                details.OnClosingEvent += CourseCreated_OnClosingEvent;
             }
         }
     }

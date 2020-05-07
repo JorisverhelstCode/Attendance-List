@@ -41,5 +41,9 @@ namespace AttendencieLibrary
         public virtual ICollection<Teachers_Courses> Teachers_Courses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TimeRegistration> TimeRegistrations { get; set; }
+        public override string ToString()
+        {
+            return Course;
+        }
     }
 }

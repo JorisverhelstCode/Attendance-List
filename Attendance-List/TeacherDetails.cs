@@ -29,6 +29,7 @@ namespace Attendance_List
         {
             NewEntry = false;
             ThisTeacher = teacher;
+            this.Text = ThisTeacher.Name;
             TxtCompany.Text = ThisTeacher.Company;
             TxtName.Text = ThisTeacher.Name;
             RefreshCourses();
@@ -134,6 +135,7 @@ namespace Attendance_List
                 course.Show();
             }
         }
+
         private void CourseInfo_OnClosingEvent(object sender, OnClosingEventArgs e)
         {
             CourseDetails temp = (CourseDetails)sender;

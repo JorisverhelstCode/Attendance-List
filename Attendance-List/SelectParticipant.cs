@@ -52,6 +52,7 @@ namespace Attendance_List
                     context.Participants_Courses.Add(relation);
                     context.SaveChanges();
                 }
+                RefreshList();
             }
         }
 
@@ -98,10 +99,20 @@ namespace Attendance_List
             LstParticipants.Items.Clear();
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
-                foreach (var item in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
+                foreach (var item in context.Participants)
                 {
-                    var participant = context.Participants.Where(x => x.ID == item.ParticipantID && x.Name.Contains(TxtFilter.Text));
-                    LstParticipants.Items.Add(participant);
+                    bool addable = true;
+                    foreach (var courseSet in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
+                    {
+                        if (item.ID == courseSet.ParticipantID)
+                        {
+                            addable = false;
+                        }
+                    }
+                    if (item.Name.Contains(TxtFilter.Text) && addable)
+                    {
+                        LstParticipants.Items.Add(item);
+                    }
                 }
             }
         }
