@@ -14,7 +14,6 @@ namespace Attendance_List
     public partial class Manage : Form
     {
         private List<CourseDetails> FormsOpen;
-
         public Manage()
         {
             InitializeComponent();

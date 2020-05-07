@@ -13,25 +13,25 @@ namespace Attendance_List
 {
     public partial class CourseDetails : Form
     {
-        public CourseInfo Course { get; set; }
-        private bool NewEntry;
+        public CourseInfo Course { get; set; } = new CourseInfo();
+        private bool NewEntry = true;
         private ErrorProvider EmptyError;
+        private List<Form> Children;
         public event EventHandler<OnClosingEventArgs> OnClosingEvent;
-        public CourseDetails(CourseInfo course)
-        {
-            InitializeComponent();
-            NewEntry = false;
-            Course = course;
-            EmptyError = new ErrorProvider();
-            SetInfoRight();
-        }
+        
 
         public CourseDetails()
         {
             InitializeComponent();
-            Course = new CourseInfo();
-            NewEntry = true;
             EmptyError = new ErrorProvider();
+            Children = new List<Form>();
+        }
+
+        public CourseDetails(CourseInfo course) : this()
+        {
+            NewEntry = false;
+            Course = course;
+            SetInfoRight();
         }
 
         private void SetInfoRight()
@@ -167,7 +167,34 @@ namespace Attendance_List
 
         private void CourseDetails_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (Children.Count() != 0)
+            {
+                MessageBox.Show("You still have connected windows open, close them first!", "Unable to close the window", MessageBoxButtons.OK);
+                e.Cancel = true;
+            }
+            else
+            {
+                if (TxtName.Text != Course.Course || TxtContactPerson.Text != Course.ContactPerson || Convert.ToInt32(TxtCourseCode) != Course.CourseCode
+                || Convert.ToInt32(TxtOeNumber.Text) != Course.OeNumber || TxtInstitution.Text != Course.CourseInstitution || TxtLocation.Text != Course.Location
+                || DTPStartDate.Value != Course.StartDate || DTPEndDate.Value != Course.EndDate)
+                {
+                    string errorMessage;
+                    if (NewEntry)
+                    {
+                        errorMessage = "Quiting new course";
+                    }
+                    else
+                    {
+                        errorMessage = $"Quiting course {Course.Course}";
+                    }
+                    var SureYouWantToQuit = MessageBox.Show("Are you sure you want to quit without saving?",
+                        errorMessage, MessageBoxButtons.YesNo);
+                    if (SureYouWantToQuit == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+            }
         }
 
         private void CourseDetails_FormClosed(object sender, FormClosedEventArgs e)
