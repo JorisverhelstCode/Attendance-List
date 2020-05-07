@@ -45,6 +45,7 @@ namespace Attendance_List
             this.LstBoxCourses.Name = "LstBoxCourses";
             this.LstBoxCourses.Size = new System.Drawing.Size(319, 388);
             this.LstBoxCourses.TabIndex = 0;
+            this.LstBoxCourses.DoubleClick += new System.EventHandler(this.LstBoxCourses_DoubleClick);
             // 
             // BtnOpen
             // 

@@ -13,7 +13,6 @@ namespace Attendance_List
 {
     public partial class Manage : Form
     {
-        private int ChildrenRunning = 0;
         private List<CourseDetails> FormsOpen;
 
         public Manage()
@@ -62,15 +61,15 @@ namespace Attendance_List
 
         private void BtnCreateCourse_Click(object sender, EventArgs e)
         {
-            ChildrenRunning++;
             CourseDetails details = new CourseDetails();
+            FormsOpen.Add(details);
             details.Show();
             details.OnClosingEvent += CourseCreated_OnClosingEvent;
         }
 
         private void Manage_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (ChildrenRunning != 0)
+            if (FormsOpen.Count != 0)
             {
                 MessageBox.Show("You still have connected forms open, close them first!", "Unable to close aplication", MessageBoxButtons.OK);
                 e.Cancel = true;
@@ -79,7 +78,9 @@ namespace Attendance_List
 
         private void CourseCreated_OnClosingEvent(object sender, OnClosingEventArgs e)
         {
-            FormsOpen.Remove((CourseDetails)sender);
+            CourseDetails temp = (CourseDetails)sender;
+            temp.OnClosingEvent -= CourseCreated_OnClosingEvent;
+            FormsOpen.Remove(temp);
             LstBoxCourses.Items.Clear();
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
@@ -92,7 +93,17 @@ namespace Attendance_List
                     }
                 }
             }
-            ChildrenRunning--;
+        }
+
+        private void LstBoxCourses_DoubleClick(object sender, EventArgs e)
+        {
+            if (LstBoxCourses.SelectedItem != null)
+            {
+                CourseDetails details = new CourseDetails((CourseInfo)LstBoxCourses.SelectedItem);
+                details.Show();
+                FormsOpen.Add(details);
+                details.OnClosingEvent += CourseCreated_OnClosingEvent;
+            }
         }
     }
 }
