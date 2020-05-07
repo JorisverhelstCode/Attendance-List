@@ -28,14 +28,7 @@ namespace Attendance_List
             {
                 LblCourseName.Text = Course.Course;
             }
-            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
-            {
-                foreach (var item in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
-                {
-                    var participant = context.Participants.Where(x => x.ID == item.ParticipantID);
-                    LstParticipants.Items.Add(participant);
-                }
-            }
+            RefreshList();
         }
 
         private void BtnCreateNewParticipant_Click(object sender, EventArgs e)
@@ -48,22 +41,43 @@ namespace Attendance_List
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-
+            if (LstParticipants.SelectedItem != null)
+            {
+                var tempPart = (Participant)LstParticipants.SelectedItem;
+                var relation = new Participants_Courses();
+                relation.ParticipantID = tempPart.ID;
+                relation.CourseID = Course.ID;
+                using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+                {
+                    context.Participants_Courses.Add(relation);
+                    context.SaveChanges();
+                }
+            }
         }
 
         private void LstParticipants_DoubleClick(object sender, EventArgs e)
         {
-
+            if (LstParticipants.SelectedItem != null)
+            {
+                var participant = new ParticipantDetails((Participant)LstParticipants.SelectedItem);
+                Children.Add(participant);
+                participant.OnClosingEvent += ParticipantForm_OnClosingEvent;
+                participant.Show();
+            }
         }
 
         private void SelectParticipant_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (Children.Count != 0)
+            {
+                MessageBox.Show("You still have connected windows open, close them first!", "Unable to close the window", MessageBoxButtons.OK);
+                e.Cancel = true;
+            }
         }
 
         private void SelectParticipant_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            OnClosingEvent?.Invoke(this, new OnClosingEventArgs());
         }
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)

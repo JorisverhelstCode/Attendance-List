@@ -42,24 +42,16 @@ namespace Attendance_List
             TxtInstitution.Text = Course.CourseInstitution;
             TxtLocation.Text = Course.Location;
             TxtName.Text = Course.Course;
-            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
-            {
-                foreach (var item in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
-                {
-                    var participant = context.Participants.Where(x => x.ID == item.ParticipantID);
-                    LstParticipants.Items.Add(participant);
-                }
-                foreach (var item in context.Teachers_Courses.Where(x => x.CourseID == Course.ID))
-                {
-                    var teacher = context.Teachers.Where(x => x.ID == item.TeacherID);
-                    LstParticipants.Items.Add(teacher);
-                }
-            }
+            RefreshParticipants();
+            RefreshTeachers();
         }
 
         private void BtnAddParticipant_Click(object sender, EventArgs e)
         {
-            
+            var participantList = new SelectParticipant(Course);
+            Children.Add(participantList);
+            participantList.OnClosingEvent += ParticipantForm_OnClosingEvent;
+            participantList.Show();
         }
 
         private void BtnRemoveParticipant_Click(object sender, EventArgs e)
@@ -69,7 +61,10 @@ namespace Attendance_List
 
         private void BtnAddTeacher_Click(object sender, EventArgs e)
         {
-
+            var teacherList = new SelectTeacher(Course);
+            Children.Add(teacherList);
+            teacherList.OnClosingEvent += ParticipantForm_OnClosingEvent;
+            teacherList.Show();
         }
 
         private void BtnRemoveTeacher_Click(object sender, EventArgs e)
@@ -226,14 +221,56 @@ namespace Attendance_List
             var temp = (ParticipantDetails)sender;
             temp.OnClosingEvent -= ParticipantForm_OnClosingEvent;
             Children.Remove(temp);
+            RefreshParticipants();
+        }
+
+        private void ParticipantList_OnClosingEvent(object sender, OnClosingEventArgs e)
+        {
+            var temp = (SelectParticipant)sender;
+            temp.OnClosingEvent -= ParticipantList_OnClosingEvent;
+            Children.Remove(temp);
+            RefreshParticipants();
+        }
+
+        private void TeacherForm_OnClosingEvent(object sender, OnClosingEventArgs e)
+        {
+            var temp = (TeacherDetails)sender;
+            temp.OnClosingEvent -= TeacherForm_OnClosingEvent;
+            Children.Remove(temp);
+            RefreshTeachers();
+        }
+
+        private void TeacherList_OnClosingEvent(object sender, OnClosingEventArgs e)
+        {
+            var temp = (SelectTeacher)sender;
+            temp.OnClosingEvent -= TeacherList_OnClosingEvent;
+            Children.Remove(temp);
+            RefreshTeachers();
+        }
+
+        private void RefreshParticipants()
+        {
             LstParticipants.Items.Clear();
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
-               foreach (var item in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
-               {
-                   var participant = context.Participants.Where(x => x.ID == item.ParticipantID);
-                   LstParticipants.Items.Add(participant);
-               }
+                foreach (var item in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
+                {
+                    var participant = context.Participants.Where(x => x.ID == item.ParticipantID);
+                    LstParticipants.Items.Add(participant);
+                }
+            }
+        }
+
+        private void RefreshTeachers()
+        {
+            LstTeachers.Items.Clear();
+            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            {
+                foreach (var item in context.Teachers_Courses.Where(x => x.CourseID == Course.ID))
+                {
+                    var teacher = context.Teachers.Where(x => x.ID == item.TeacherID);
+                    LstTeachers.Items.Add(teacher);
+                }
             }
         }
     }
