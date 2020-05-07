@@ -31,14 +31,7 @@ namespace Attendance_List
             ThisTeacher = teacher;
             TxtCompany.Text = ThisTeacher.Company;
             TxtName.Text = ThisTeacher.Name;
-            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
-            {
-                foreach (var item in context.Teachers_Courses.Where(x => x.TeacherID == ThisTeacher.ID))
-                {
-                    var course = context.CourseInfoes.Where(x => x.ID == item.CourseID);
-                    LstCourses.Items.Add(course);
-                }
-            }
+            RefreshCourses();
         }
 
         private void BtnQuit_Click(object sender, EventArgs e)
@@ -129,6 +122,40 @@ namespace Attendance_List
             temp.OnClosingEvent -= ParticipantForm_OnClosingEvent;
             Children.Remove(temp);
             
+        }
+
+        private void LstCourses_DoubleClick(object sender, EventArgs e)
+        {
+            if (LstCourses.SelectedItem != null)
+            {
+                var course = new CourseDetails((CourseInfo)LstCourses.SelectedItem);
+                course.OnClosingEvent += CourseInfo_OnClosingEvent;
+                Children.Add(course);
+                course.Show();
+            }
+        }
+        private void CourseInfo_OnClosingEvent(object sender, OnClosingEventArgs e)
+        {
+            CourseDetails temp = (CourseDetails)sender;
+            temp.OnClosingEvent -= CourseInfo_OnClosingEvent;
+            Children.Remove(temp);
+            RefreshCourses();
+        }
+
+        private void RefreshCourses()
+        {
+            LstCourses.Items.Clear();
+            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            {
+                var Courses = context.Teachers_Courses.Where(x => x.TeacherID == ThisTeacher.ID);
+                if (Courses.Count() != 0)
+                {
+                    foreach (var item in Courses)
+                    {
+                        LstCourses.Items.Add(context.CourseInfoes.Where(x => x.ID == item.CourseID).FirstOrDefault());
+                    }
+                }
+            }
         }
     }
 }

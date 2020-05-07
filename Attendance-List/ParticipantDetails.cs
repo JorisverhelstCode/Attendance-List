@@ -50,6 +50,8 @@ namespace Attendance_List
             if (LstBoxCourses.SelectedItem != null)
             {
                 var course = new CourseDetails((CourseInfo)LstBoxCourses.SelectedItem);
+                course.OnClosingEvent += CourseInfo_OnClosingEvent;
+                Children.Add(course);
                 course.Show();
             }
         }
@@ -143,6 +145,30 @@ namespace Attendance_List
         private void ParticipantDetails_FormClosed(object sender, FormClosedEventArgs e)
         {
             OnClosingEvent?.Invoke(this, new OnClosingEventArgs());
+        }
+
+        private void CourseInfo_OnClosingEvent(object sender, OnClosingEventArgs e)
+        {
+            CourseDetails temp = (CourseDetails)sender;
+            temp.OnClosingEvent -= CourseInfo_OnClosingEvent;
+            Children.Remove(temp);
+            RefreshCourses();
+        }
+
+        private void RefreshCourses()
+        {
+            LstBoxCourses.Items.Clear();
+            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            {
+                var Courses = context.Participants_Courses.Where(x => x.ParticipantID == ThisParticipant.ID);
+                if (Courses.Count() != 0)
+                {
+                    foreach (var item in Courses)
+                    {
+                        LstBoxCourses.Items.Add(context.CourseInfoes.Where(x => x.ID == item.CourseID).FirstOrDefault());
+                    }
+                }
+            }
         }
     }
 }

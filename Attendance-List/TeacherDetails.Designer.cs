@@ -88,6 +88,7 @@
             this.LstCourses.Name = "LstCourses";
             this.LstCourses.Size = new System.Drawing.Size(329, 212);
             this.LstCourses.TabIndex = 5;
+            this.LstCourses.DoubleClick += new System.EventHandler(this.LstCourses_DoubleClick);
             // 
             // BtnSave
             // 

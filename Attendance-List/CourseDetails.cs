@@ -50,7 +50,7 @@ namespace Attendance_List
         {
             var participantList = new SelectParticipant(Course);
             Children.Add(participantList);
-            participantList.OnClosingEvent += ParticipantForm_OnClosingEvent;
+            participantList.OnClosingEvent += ParticipantList_OnClosingEvent;
             participantList.Show();
         }
 
@@ -63,7 +63,7 @@ namespace Attendance_List
         {
             var teacherList = new SelectTeacher(Course);
             Children.Add(teacherList);
-            teacherList.OnClosingEvent += ParticipantForm_OnClosingEvent;
+            teacherList.OnClosingEvent += TeacherList_OnClosingEvent;
             teacherList.Show();
         }
 
