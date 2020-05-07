@@ -90,6 +90,7 @@ namespace Attendance_List
             this.MinimumSize = new System.Drawing.Size(808, 576);
             this.Name = "Manage";
             this.Text = "Manage Attendences";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Manage_FormClosing);
             this.Load += new System.EventHandler(this.Manage_Load);
             this.ResumeLayout(false);
 

@@ -38,11 +38,11 @@
             this.BtnAddParticipant = new System.Windows.Forms.Button();
             this.BtnRemoveParticipant = new System.Windows.Forms.Button();
             this.LblInstitution = new System.Windows.Forms.Label();
-            this.txtInstitution = new System.Windows.Forms.TextBox();
+            this.TxtInstitution = new System.Windows.Forms.TextBox();
             this.TxtContactPerson = new System.Windows.Forms.TextBox();
             this.LblContactPerson = new System.Windows.Forms.Label();
             this.LblLocation = new System.Windows.Forms.Label();
-            this.txtLocation = new System.Windows.Forms.TextBox();
+            this.TxtLocation = new System.Windows.Forms.TextBox();
             this.LblOeNumber = new System.Windows.Forms.Label();
             this.LblCourseCode = new System.Windows.Forms.Label();
             this.TxtOeNumber = new System.Windows.Forms.TextBox();
@@ -138,12 +138,12 @@
             this.LblInstitution.TabIndex = 8;
             this.LblInstitution.Text = "Institution:";
             // 
-            // txtInstitution
+            // TxtInstitution
             // 
-            this.txtInstitution.Location = new System.Drawing.Point(16, 142);
-            this.txtInstitution.Name = "txtInstitution";
-            this.txtInstitution.Size = new System.Drawing.Size(320, 22);
-            this.txtInstitution.TabIndex = 9;
+            this.TxtInstitution.Location = new System.Drawing.Point(16, 142);
+            this.TxtInstitution.Name = "TxtInstitution";
+            this.TxtInstitution.Size = new System.Drawing.Size(320, 22);
+            this.TxtInstitution.TabIndex = 9;
             // 
             // TxtContactPerson
             // 
@@ -170,12 +170,12 @@
             this.LblLocation.TabIndex = 12;
             this.LblLocation.Text = "Location:";
             // 
-            // txtLocation
+            // TxtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(14, 305);
-            this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(322, 22);
-            this.txtLocation.TabIndex = 13;
+            this.TxtLocation.Location = new System.Drawing.Point(14, 305);
+            this.TxtLocation.Name = "TxtLocation";
+            this.TxtLocation.Size = new System.Drawing.Size(322, 22);
+            this.TxtLocation.TabIndex = 13;
             // 
             // LblOeNumber
             // 
@@ -298,11 +298,11 @@
             this.Controls.Add(this.TxtOeNumber);
             this.Controls.Add(this.LblCourseCode);
             this.Controls.Add(this.LblOeNumber);
-            this.Controls.Add(this.txtLocation);
+            this.Controls.Add(this.TxtLocation);
             this.Controls.Add(this.LblLocation);
             this.Controls.Add(this.LblContactPerson);
             this.Controls.Add(this.TxtContactPerson);
-            this.Controls.Add(this.txtInstitution);
+            this.Controls.Add(this.TxtInstitution);
             this.Controls.Add(this.LblInstitution);
             this.Controls.Add(this.BtnRemoveParticipant);
             this.Controls.Add(this.BtnAddParticipant);
@@ -317,6 +317,8 @@
             this.MinimumSize = new System.Drawing.Size(1058, 571);
             this.Name = "CourseDetails";
             this.Text = "CourseDetails";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CourseDetails_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CourseDetails_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,11 +335,11 @@
         private System.Windows.Forms.Button BtnAddParticipant;
         private System.Windows.Forms.Button BtnRemoveParticipant;
         private System.Windows.Forms.Label LblInstitution;
-        private System.Windows.Forms.TextBox txtInstitution;
+        private System.Windows.Forms.TextBox TxtInstitution;
         private System.Windows.Forms.TextBox TxtContactPerson;
         private System.Windows.Forms.Label LblContactPerson;
         private System.Windows.Forms.Label LblLocation;
-        private System.Windows.Forms.TextBox txtLocation;
+        private System.Windows.Forms.TextBox TxtLocation;
         private System.Windows.Forms.Label LblOeNumber;
         private System.Windows.Forms.Label LblCourseCode;
         private System.Windows.Forms.TextBox TxtOeNumber;

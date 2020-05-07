@@ -13,9 +13,13 @@ namespace Attendance_List
 {
     public partial class Manage : Form
     {
+        private int ChildrenRunning = 0;
+        private List<CourseDetails> FormsOpen;
+
         public Manage()
         {
             InitializeComponent();
+            FormsOpen = new List<CourseDetails>();
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
                 var Courses = context.CourseInfoes.ToList();
@@ -35,6 +39,8 @@ namespace Attendance_List
             {
                 CourseDetails details = new CourseDetails((CourseInfo)LstBoxCourses.SelectedItem);
                 details.Show();
+                FormsOpen.Add(details);
+                details.OnClosingEvent += CourseCreated_OnClosingEvent;
             }
         }
 
@@ -56,8 +62,37 @@ namespace Attendance_List
 
         private void BtnCreateCourse_Click(object sender, EventArgs e)
         {
+            ChildrenRunning++;
             CourseDetails details = new CourseDetails();
             details.Show();
+            details.OnClosingEvent += CourseCreated_OnClosingEvent;
+        }
+
+        private void Manage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (ChildrenRunning != 0)
+            {
+                MessageBox.Show("You still have connected forms open, close them first!", "Unable to close aplication", MessageBoxButtons.OK);
+                e.Cancel = true;
+            }
+        }
+
+        private void CourseCreated_OnClosingEvent(object sender, OnClosingEventArgs e)
+        {
+            FormsOpen.Remove((CourseDetails)sender);
+            LstBoxCourses.Items.Clear();
+            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+            {
+                var Courses = context.CourseInfoes.ToList();
+                if (Courses.Count() != 0)
+                {
+                    foreach (var item in Courses)
+                    {
+                        LstBoxCourses.Items.Add(item);
+                    }
+                }
+            }
+            ChildrenRunning--;
         }
     }
 }
