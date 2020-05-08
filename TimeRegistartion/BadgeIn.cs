@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace TimeRegistartion
 {
-    public partial class Form1 : Form
+    public partial class BadgeIn : Form
     {
-        public Form1()
+        public BadgeIn()
         {
             InitializeComponent();
+        }
+
+        private void BtnQuit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnBadgeIn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
