@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,16 +26,36 @@ namespace Attendance_List
 
         private void BtnDeleteCourse_Click(object sender, EventArgs e)
         {
-            var toBeDeleted = LstBoxCourses.SelectedItem;
-            if (toBeDeleted != null )
+            var toBeDeleted = (CourseInfo)LstParticipants.SelectedItem;
+            if (toBeDeleted != null)
             {
                 var ConfirmationBoxAnswer = MessageBox.Show($"Deleting {toBeDeleted}", $"Are you sure you want to delete {toBeDeleted}", MessageBoxButtons.YesNo);
                 if (ConfirmationBoxAnswer == DialogResult.Yes)
                 {
                     using (AttendanceListDbEntities context = new AttendanceListDbEntities())
                     {
-                        context.CourseInfoes.Remove((CourseInfo)LstBoxCourses.SelectedItem);
+                        bool oldValidateOnSaveEnabled = context.Configuration.ValidateOnSaveEnabled;
+
+                        try
+                        {
+                            context.Configuration.ValidateOnSaveEnabled = false;
+
+                            var course = new CourseInfo { ID = toBeDeleted.ID };
+
+                            context.CourseInfoes.Attach(course);
+                            context.Entry(course).State = EntityState.Deleted;
+                            context.SaveChanges();
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("This participant still has open connections!", $"Unable to delete {toBeDeleted.Course}", MessageBoxButtons.OK);
+                        }
+                        finally
+                        {
+                            context.Configuration.ValidateOnSaveEnabled = oldValidateOnSaveEnabled;
+                        }
                     }
+                    RefreshCourses();
                 }
             }
         }
@@ -138,7 +159,7 @@ namespace Attendance_List
 
         private void BtnDeleteTeacher_Click(object sender, EventArgs e)
         {
-            var toBeDeleted = LstTeachers.SelectedItem;
+            var toBeDeleted = (Teacher)LstTeachers.SelectedItem;
             if (toBeDeleted != null)
             {
                 var ConfirmationBoxAnswer = MessageBox.Show($"Deleting {toBeDeleted}", $"Are you sure you want to delete {toBeDeleted}", MessageBoxButtons.YesNo);
@@ -146,15 +167,35 @@ namespace Attendance_List
                 {
                     using (AttendanceListDbEntities context = new AttendanceListDbEntities())
                     {
-                        context.Teachers.Remove((Teacher)LstTeachers.SelectedItem);
+                        bool oldValidateOnSaveEnabled = context.Configuration.ValidateOnSaveEnabled;
+
+                        try
+                        {
+                            context.Configuration.ValidateOnSaveEnabled = false;
+
+                            var teacher = new Teacher { ID = toBeDeleted.ID };
+
+                            context.Teachers.Attach(teacher);
+                            context.Entry(teacher).State = EntityState.Deleted;
+                            context.SaveChanges();
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("This teacher still has open connections!", $"Unable to delete {toBeDeleted.Name}", MessageBoxButtons.OK);
+                        }
+                        finally
+                        {
+                            context.Configuration.ValidateOnSaveEnabled = oldValidateOnSaveEnabled;
+                        }
                     }
+                    RefreshTeachers();
                 }
             }
         }
 
         private void BtnDeleteParticipant_Click(object sender, EventArgs e)
         {
-            var toBeDeleted = LstParticipants.SelectedItem;
+            var toBeDeleted = (Participant)LstParticipants.SelectedItem;
             if (toBeDeleted != null)
             {
                 var ConfirmationBoxAnswer = MessageBox.Show($"Deleting {toBeDeleted}", $"Are you sure you want to delete {toBeDeleted}", MessageBoxButtons.YesNo);
@@ -162,8 +203,27 @@ namespace Attendance_List
                 {
                     using (AttendanceListDbEntities context = new AttendanceListDbEntities())
                     {
-                        context.Participants.Remove((Participant)LstParticipants.SelectedItem);
+                        bool oldValidateOnSaveEnabled = context.Configuration.ValidateOnSaveEnabled;
+
+                        try
+                        {
+                            context.Configuration.ValidateOnSaveEnabled = false;
+
+                            var part = new Participant { ID = toBeDeleted.ID };
+
+                            context.Participants.Attach(part);
+                            context.Entry(part).State = EntityState.Deleted;
+                            context.SaveChanges();
+                        } catch (Exception)
+                        {
+                            MessageBox.Show("This participant still has open connections!", $"Unable to delete {toBeDeleted.Name}", MessageBoxButtons.OK);
+                        }
+                        finally
+                        {
+                            context.Configuration.ValidateOnSaveEnabled = oldValidateOnSaveEnabled;
+                        }
                     }
+                    RefreshParticipants();
                 }
             }
         }
