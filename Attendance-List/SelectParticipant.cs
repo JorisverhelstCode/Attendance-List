@@ -22,7 +22,7 @@ namespace Attendance_List
             InitializeComponent();
             Course = course;
             Children = new List<Form>();
-            if (Course.Course == "")
+            if (Course.Course == String.Empty)
             {
                 LblCourseName.Text = "Unnamed Course";
             } else
