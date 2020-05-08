@@ -41,6 +41,7 @@
             this.LblBadge = new System.Windows.Forms.Label();
             this.TxtBadge = new System.Windows.Forms.TextBox();
             this.LblCourses = new System.Windows.Forms.Label();
+            this.LstTimeRegistrations = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // LblName
@@ -56,22 +57,23 @@
             // 
             this.TxtName.Location = new System.Drawing.Point(95, 20);
             this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(251, 22);
+            this.TxtName.Size = new System.Drawing.Size(241, 22);
             this.TxtName.TabIndex = 1;
             // 
             // LstBoxCourses
             // 
             this.LstBoxCourses.FormattingEnabled = true;
             this.LstBoxCourses.ItemHeight = 16;
-            this.LstBoxCourses.Location = new System.Drawing.Point(17, 104);
+            this.LstBoxCourses.Location = new System.Drawing.Point(95, 129);
             this.LstBoxCourses.Name = "LstBoxCourses";
             this.LstBoxCourses.Size = new System.Drawing.Size(327, 260);
             this.LstBoxCourses.TabIndex = 2;
+            this.LstBoxCourses.SelectedIndexChanged += new System.EventHandler(this.LstBoxCourses_SelectedIndexChanged);
             this.LstBoxCourses.DoubleClick += new System.EventHandler(this.LstBoxCourses_DoubleClick);
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(17, 385);
+            this.BtnSave.Location = new System.Drawing.Point(480, 472);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(131, 56);
             this.BtnSave.TabIndex = 3;
@@ -81,7 +83,7 @@
             // 
             // BtnQuit
             // 
-            this.BtnQuit.Location = new System.Drawing.Point(595, 387);
+            this.BtnQuit.Location = new System.Drawing.Point(665, 474);
             this.BtnQuit.Name = "BtnQuit";
             this.BtnQuit.Size = new System.Drawing.Size(131, 54);
             this.BtnQuit.TabIndex = 4;
@@ -92,7 +94,7 @@
             // LblAdress
             // 
             this.LblAdress.AutoSize = true;
-            this.LblAdress.Location = new System.Drawing.Point(431, 20);
+            this.LblAdress.Location = new System.Drawing.Point(12, 70);
             this.LblAdress.Name = "LblAdress";
             this.LblAdress.Size = new System.Drawing.Size(56, 17);
             this.LblAdress.TabIndex = 5;
@@ -100,7 +102,7 @@
             // 
             // TxtAdress
             // 
-            this.TxtAdress.Location = new System.Drawing.Point(434, 56);
+            this.TxtAdress.Location = new System.Drawing.Point(95, 67);
             this.TxtAdress.Name = "TxtAdress";
             this.TxtAdress.Size = new System.Drawing.Size(241, 22);
             this.TxtAdress.TabIndex = 6;
@@ -108,7 +110,7 @@
             // LblBirthday
             // 
             this.LblBirthday.AutoSize = true;
-            this.LblBirthday.Location = new System.Drawing.Point(431, 104);
+            this.LblBirthday.Location = new System.Drawing.Point(12, 462);
             this.LblBirthday.Name = "LblBirthday";
             this.LblBirthday.Size = new System.Drawing.Size(85, 17);
             this.LblBirthday.TabIndex = 7;
@@ -116,7 +118,7 @@
             // 
             // DTPDayOfBirth
             // 
-            this.DTPDayOfBirth.Location = new System.Drawing.Point(434, 154);
+            this.DTPDayOfBirth.Location = new System.Drawing.Point(12, 505);
             this.DTPDayOfBirth.Name = "DTPDayOfBirth";
             this.DTPDayOfBirth.Size = new System.Drawing.Size(290, 22);
             this.DTPDayOfBirth.TabIndex = 8;
@@ -124,7 +126,7 @@
             // LblBadge
             // 
             this.LblBadge.AutoSize = true;
-            this.LblBadge.Location = new System.Drawing.Point(431, 219);
+            this.LblBadge.Location = new System.Drawing.Point(12, 424);
             this.LblBadge.Name = "LblBadge";
             this.LblBadge.Size = new System.Drawing.Size(105, 17);
             this.LblBadge.TabIndex = 9;
@@ -132,25 +134,36 @@
             // 
             // TxtBadge
             // 
-            this.TxtBadge.Location = new System.Drawing.Point(434, 260);
+            this.TxtBadge.Location = new System.Drawing.Point(145, 421);
             this.TxtBadge.Name = "TxtBadge";
-            this.TxtBadge.Size = new System.Drawing.Size(149, 22);
+            this.TxtBadge.Size = new System.Drawing.Size(191, 22);
             this.TxtBadge.TabIndex = 10;
             // 
             // LblCourses
             // 
             this.LblCourses.AutoSize = true;
-            this.LblCourses.Location = new System.Drawing.Point(14, 61);
+            this.LblCourses.Location = new System.Drawing.Point(12, 129);
             this.LblCourses.Name = "LblCourses";
             this.LblCourses.Size = new System.Drawing.Size(64, 17);
             this.LblCourses.TabIndex = 11;
             this.LblCourses.Text = "Courses:";
             // 
+            // LstTimeRegistrations
+            // 
+            this.LstTimeRegistrations.FormattingEnabled = true;
+            this.LstTimeRegistrations.ItemHeight = 16;
+            this.LstTimeRegistrations.Location = new System.Drawing.Point(480, 129);
+            this.LstTimeRegistrations.Name = "LstTimeRegistrations";
+            this.LstTimeRegistrations.Size = new System.Drawing.Size(316, 324);
+            this.LstTimeRegistrations.TabIndex = 12;
+            this.LstTimeRegistrations.DoubleClick += new System.EventHandler(this.LstTimeRegistrations_DoubleClick);
+            // 
             // ParticipantDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 470);
+            this.ClientSize = new System.Drawing.Size(824, 539);
+            this.Controls.Add(this.LstTimeRegistrations);
             this.Controls.Add(this.LblCourses);
             this.Controls.Add(this.TxtBadge);
             this.Controls.Add(this.LblBadge);
@@ -164,7 +177,6 @@
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.LblName);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(756, 517);
             this.MinimumSize = new System.Drawing.Size(756, 517);
             this.Name = "ParticipantDetails";
             this.Text = "ParticipantDetails";
@@ -189,5 +201,6 @@
         private System.Windows.Forms.Label LblBadge;
         private System.Windows.Forms.TextBox TxtBadge;
         private System.Windows.Forms.Label LblCourses;
+        private System.Windows.Forms.ListBox LstTimeRegistrations;
     }
 }

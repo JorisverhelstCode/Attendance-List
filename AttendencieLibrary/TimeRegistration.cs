@@ -21,5 +21,10 @@ namespace AttendencieLibrary
     
         public virtual CourseInfo CourseInfo { get; set; }
         public virtual Participant Participant { get; set; }
+
+        public override string ToString()
+        {
+            return DateTime.Day + "/" + DateTime.Month + "/" + DateTime.Year;
+        }
     }
 }

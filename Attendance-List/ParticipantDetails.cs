@@ -36,14 +36,8 @@ namespace Attendance_List
             TxtBadge.Text = ThisParticipant.BadgeNumber + "";
             TxtAdress.Text = ThisParticipant.Adress;
             DTPDayOfBirth.Value = ThisParticipant.DateOfBirth != null ? (DateTime)ThisParticipant.DateOfBirth : new DateTime();
-            using (AttendanceListDbEntities context = new AttendanceListDbEntities())
-            {
-                foreach (var item in context.Participants_Courses.Where(x => x.ParticipantID == ThisParticipant.ID))
-                {
-                    var course = context.CourseInfoes.Where(x => x.ID == item.CourseID);
-                    LstBoxCourses.Items.Add(course);
-                }
-            }
+            RefreshCourses();
+            RefreshTimeRegistrations();
         }
 
         private void LstBoxCourses_DoubleClick(object sender, EventArgs e)
@@ -170,6 +164,37 @@ namespace Attendance_List
                     }
                 }
             }
+        }
+
+        private void RefreshTimeRegistrations()
+        {
+            if (LstBoxCourses.SelectedItem != null)
+            {
+                LstTimeRegistrations.Items.Clear();
+                using (AttendanceListDbEntities context = new AttendanceListDbEntities())
+                {
+                    var TimeRegistartions = context.TimeRegistrations.Where(x => x.ParticipantID == ThisParticipant.ID);
+                    if (TimeRegistartions.Count() != 0)
+                    {
+                        var temp = (CourseInfo)LstBoxCourses.SelectedItem;
+                        foreach (var item in TimeRegistartions)
+                        {
+                            if (item.CourseID == temp.ID)
+                                LstBoxCourses.Items.Add(item);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void LstBoxCourses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshTimeRegistrations();
+        }
+
+        private void LstTimeRegistrations_DoubleClick(object sender, EventArgs e)
+        {
+
         }
     }
 }
