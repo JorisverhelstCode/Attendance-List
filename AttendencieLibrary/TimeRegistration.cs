@@ -24,7 +24,7 @@ namespace AttendencieLibrary
 
         public override string ToString()
         {
-            return DateTime.Day + "/" + DateTime.Month + "/" + DateTime.Year;
+            return DateTime.ToString();
         }
     }
 }

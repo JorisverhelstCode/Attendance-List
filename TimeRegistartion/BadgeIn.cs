@@ -13,12 +13,14 @@ namespace TimeRegistartion
 {
     public partial class BadgeIn : Form
     {
-        public event EventHandler<OnClosingEventArgs> OnClosingEvent;
         private CourseInfo Course;
+        private List<Participant> Participants;
         public BadgeIn(CourseInfo course)
         {
             InitializeComponent();
             Course = course;
+            LblCourseName.Text = Course.Course;
+            Participants = new List<Participant>();
             LoadParticipants();
             RefreshTimeregistrations();
         }
@@ -42,11 +44,7 @@ namespace TimeRegistartion
                 context.TimeRegistrations.Add(toBeAdded);
                 context.SaveChanges();
             }
-        }
-
-        private void LstTimeRegistrations_DoubleClick(object sender, EventArgs e)
-        {
-
+            RefreshTimeregistrations();
         }
 
         private void LoadParticipants()
@@ -57,6 +55,7 @@ namespace TimeRegistartion
                 foreach (var item in context.Participants_Courses.Where(x => x.CourseID == Course.ID))
                 {
                     var participant = context.Participants.Where(x => x.ID == item.ParticipantID).FirstOrDefault();
+                    Participants.Add(participant);
                     LstParticipants.Items.Add(participant);
                 }
             }
@@ -67,21 +66,32 @@ namespace TimeRegistartion
             LstTimeRegistrations.Items.Clear();
             using (AttendanceListDbEntities context = new AttendanceListDbEntities())
             {
-                var timeStamps = context.TimeRegistrations.Where(x => x.DateTime.Day == DateTime.Now.Day 
-                && x.DateTime.Month == DateTime.Now.Month && x.DateTime.Year == DateTime.Now.Year).ToList();
+                var timeStamps = from part in Participants
+                                 join timeStamp in context.TimeRegistrations on part.ID equals timeStamp.ParticipantID
+                                 where timeStamp.DateTime.Day == DateTime.Now.Day && timeStamp.DateTime.Month == DateTime.Now.Month && timeStamp.DateTime.Year == DateTime.Now.Year
+                                 select new { ParticipantName = part.Name };
                 if (timeStamps.Count() != 0)
                 {
-                    foreach (var item in timeStamps)
+                    foreach (var item in Participants)
                     {
-                        LstTimeRegistrations.Items.Add(item);
+                        int counter = 0;
+                        foreach (var name in timeStamps)
+                        {
+                            if (name.ParticipantName == item.Name)
+                            {
+                                counter++;
+                            }
+                        }
+                        if (counter % 2 == 1)
+                        {
+                            LstTimeRegistrations.Items.Add("Badged in");
+                        } else
+                        {
+                            LstTimeRegistrations.Items.Add("Badged out");
+                        }
                     }
                 }
             }
-        }
-
-        private void BadgeIn_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            OnClosingEvent?.Invoke(this, new OnClosingEventArgs());
         }
     }
 }

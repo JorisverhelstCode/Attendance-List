@@ -44,7 +44,7 @@
             this.LstParticipants.ItemHeight = 16;
             this.LstParticipants.Location = new System.Drawing.Point(37, 65);
             this.LstParticipants.Name = "LstParticipants";
-            this.LstParticipants.Size = new System.Drawing.Size(277, 260);
+            this.LstParticipants.Size = new System.Drawing.Size(203, 260);
             this.LstParticipants.TabIndex = 0;
             // 
             // LblCourse
@@ -68,7 +68,7 @@
             // LblToday
             // 
             this.LblToday.AutoSize = true;
-            this.LblToday.Location = new System.Drawing.Point(360, 27);
+            this.LblToday.Location = new System.Drawing.Point(284, 27);
             this.LblToday.Name = "LblToday";
             this.LblToday.Size = new System.Drawing.Size(144, 17);
             this.LblToday.TabIndex = 3;
@@ -78,17 +78,16 @@
             // 
             this.LstTimeRegistrations.FormattingEnabled = true;
             this.LstTimeRegistrations.ItemHeight = 16;
-            this.LstTimeRegistrations.Location = new System.Drawing.Point(363, 65);
+            this.LstTimeRegistrations.Location = new System.Drawing.Point(287, 65);
             this.LstTimeRegistrations.Name = "LstTimeRegistrations";
-            this.LstTimeRegistrations.Size = new System.Drawing.Size(347, 260);
+            this.LstTimeRegistrations.Size = new System.Drawing.Size(141, 260);
             this.LstTimeRegistrations.TabIndex = 4;
-            this.LstTimeRegistrations.DoubleClick += new System.EventHandler(this.LstTimeRegistrations_DoubleClick);
             // 
             // BtnBadgeIn
             // 
             this.BtnBadgeIn.Location = new System.Drawing.Point(37, 354);
             this.BtnBadgeIn.Name = "BtnBadgeIn";
-            this.BtnBadgeIn.Size = new System.Drawing.Size(277, 56);
+            this.BtnBadgeIn.Size = new System.Drawing.Size(203, 56);
             this.BtnBadgeIn.TabIndex = 5;
             this.BtnBadgeIn.Text = "Badge";
             this.BtnBadgeIn.UseVisualStyleBackColor = true;
@@ -96,7 +95,7 @@
             // 
             // BtnQuit
             // 
-            this.BtnQuit.Location = new System.Drawing.Point(583, 354);
+            this.BtnQuit.Location = new System.Drawing.Point(301, 354);
             this.BtnQuit.Name = "BtnQuit";
             this.BtnQuit.Size = new System.Drawing.Size(127, 56);
             this.BtnQuit.TabIndex = 6;
@@ -108,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 423);
+            this.ClientSize = new System.Drawing.Size(466, 423);
             this.Controls.Add(this.BtnQuit);
             this.Controls.Add(this.BtnBadgeIn);
             this.Controls.Add(this.LstTimeRegistrations);
@@ -117,11 +116,10 @@
             this.Controls.Add(this.LblCourse);
             this.Controls.Add(this.LstParticipants);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(752, 470);
-            this.MinimumSize = new System.Drawing.Size(752, 470);
+            this.MaximumSize = new System.Drawing.Size(484, 470);
+            this.MinimumSize = new System.Drawing.Size(484, 470);
             this.Name = "BadgeIn";
             this.Text = "BadgeIn";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BadgeIn_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
