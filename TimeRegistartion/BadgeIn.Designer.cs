@@ -33,7 +33,7 @@
             this.LblCourse = new System.Windows.Forms.Label();
             this.LblCourseName = new System.Windows.Forms.Label();
             this.LblToday = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.LstTimeRegistrations = new System.Windows.Forms.ListBox();
             this.BtnBadgeIn = new System.Windows.Forms.Button();
             this.BtnQuit = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -74,14 +74,15 @@
             this.LblToday.TabIndex = 3;
             this.LblToday.Text = "Today\'s registartions:";
             // 
-            // listBox1
+            // LstTimeRegistrations
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(363, 65);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(347, 260);
-            this.listBox1.TabIndex = 4;
+            this.LstTimeRegistrations.FormattingEnabled = true;
+            this.LstTimeRegistrations.ItemHeight = 16;
+            this.LstTimeRegistrations.Location = new System.Drawing.Point(363, 65);
+            this.LstTimeRegistrations.Name = "LstTimeRegistrations";
+            this.LstTimeRegistrations.Size = new System.Drawing.Size(347, 260);
+            this.LstTimeRegistrations.TabIndex = 4;
+            this.LstTimeRegistrations.DoubleClick += new System.EventHandler(this.LstTimeRegistrations_DoubleClick);
             // 
             // BtnBadgeIn
             // 
@@ -110,7 +111,7 @@
             this.ClientSize = new System.Drawing.Size(734, 423);
             this.Controls.Add(this.BtnQuit);
             this.Controls.Add(this.BtnBadgeIn);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.LstTimeRegistrations);
             this.Controls.Add(this.LblToday);
             this.Controls.Add(this.LblCourseName);
             this.Controls.Add(this.LblCourse);
@@ -120,6 +121,7 @@
             this.MinimumSize = new System.Drawing.Size(752, 470);
             this.Name = "BadgeIn";
             this.Text = "BadgeIn";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BadgeIn_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,7 +133,7 @@
         private System.Windows.Forms.Label LblCourse;
         private System.Windows.Forms.Label LblCourseName;
         private System.Windows.Forms.Label LblToday;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox LstTimeRegistrations;
         private System.Windows.Forms.Button BtnBadgeIn;
         private System.Windows.Forms.Button BtnQuit;
     }
